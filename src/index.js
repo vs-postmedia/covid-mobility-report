@@ -1,6 +1,7 @@
 // LIBS
 import 'intersection-observer';
 import scrollama from 'scrollama';
+import HorizonChart from './js/HorizonChart/horizon-chart.js';
 
 // CSS
 import normalize from './css/normalize.css';
@@ -14,8 +15,9 @@ import css from './css/main.css';
 const init = async () => {
 	// instantiate the scrollama
 	const scroller = scrollama();
-	const iframe = document.querySelector('.scrollyteller .chart > iframe');
-
+	
+	console.log(HorizonChart)
+	HorizonChart.init([1], '.scrollyteller');
 	// setup the instance, pass callback functions
 	scroller
 		.setup({
@@ -24,7 +26,18 @@ const init = async () => {
 		})
 		.onStepEnter(resp => {
 			// { element, index, direction }
-			iframe.src = iframe.src.replace(/#slide-.*/, '') + '#slide-' + resp.index;
+
+			const imgs = document.querySelectorAll('.scrollyteller img');
+			imgs.forEach(img => {
+				img.style.opacity = 0.5;
+				img.classList.remove('focus');
+			});
+
+			const focus = document.querySelectorAll(`.scrollyteller img.f${resp.index}`);
+			focus.forEach(img => {
+				img.style.opacity = 1;
+				img.className += " focus";
+			});
 		})
 		.onStepExit(resp => {
 			// { element, index, direction }

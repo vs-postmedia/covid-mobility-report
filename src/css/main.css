@@ -35,6 +35,15 @@
 }
 
 
+/* CARDS */
+.wrapper img {
+	transition: opacity 0.4s ease-in;
+}
+.wrapper img.focus {
+	/*transform: translate(-50%, 100%);*/
+	opacity: 1;
+}
+
 
 /* STEP ENTRIES */
 .scrollyteller .sticky {
@@ -50,7 +59,7 @@
 	position: relative;
 }
 .scrollyteller .step {
-	margin: 75% auto;
+	margin: 100% auto;
 	max-width: 400px;
 	text-align: center;
 }
@@ -59,7 +68,7 @@
 }
 .scrollyteller .step:last-of-type {
 	margin-bottom: 0;
-	padding-bottom: 50%;
+	padding-bottom: 200%;
 }
 
 .scrollyteller .step > p {
