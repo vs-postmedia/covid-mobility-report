@@ -1,0 +1,61 @@
+/* CHART CONTAINERS */
+#charts {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+
+#charts .chart {
+	color: var(--grey04);
+	height: 200px;
+	margin: 2% 1%;
+	width: 45%;
+}
+
+#charts .label {
+	color: #231F20;
+	font-family: BentonSansCond-RegItalic, sans-serif;
+	font-size: 0.9rem;
+	padding: .15rem;
+	pointer-events: none;
+	position: absolute;
+	text-transform: uppercase;
+	z-index: 99
+}
+
+#charts .label.group {
+	color: #231F20;
+	font-family: Shift-Bold, serif;
+	font-size: 1.1rem;
+	position: absolute;
+	transform: translateY(-1.25rem);
+	z-index: 99
+}
+
+#charts .chart .overlay {
+    fill: none;
+    pointer-events: all;
+}
+
+#charts .chart .tick text {
+	fill: #231F20;
+	font-size: 0.75rem;
+	font-family: 'BentonSansCond-Regular';
+}
+
+#charts .chart .tick line,
+#charts .chart .gridline .tick line {
+	stroke: var(--grey04);
+}
+
+#charts .chart .hover-line {
+	stroke: #6F257F;
+	stroke-width: 2px;
+	stroke-dasharray: 3,3;
+}
+
+@media screen and (min-width: 450px) {
+	#charts .chart {
+		
+	}
+}
