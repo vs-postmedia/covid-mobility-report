@@ -188,7 +188,7 @@ module.exports = {
 			},
 			// js/jsx (es6 friendly)
 			{
-				test: /\.(js|jsx)$/,
+				test: /\.(js$)$/,
 				exclude: /node_modules/,
 				use: { 
 					loader: 'babel-loader',
