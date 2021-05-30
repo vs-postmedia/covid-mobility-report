@@ -17,60 +17,6 @@ const margin = {
 
 
 
-const lineGenerator = (data, x) => {
-	return d3.line() 
-		.x(d => xScale(d.date))
-		.y(d => yScale(d.value))
-}
-
-
-const drawData = (svg, metric, i, data, config) => {
-	// prep variables for chart
-	const variable = data.map(d => {
-		d.value = parseInt(d[metric]);
-		return (({date, value}) => ({date, value}))(d);
-	});
-
-	if (metric === 'work') {
-		// bars
-		svg.append('g')
-			.attr('class', 'bar')
-			.selectAll('rect')
-			.data(variable)
-			.join('rect')
-			// .attr('stroke', config.fill_colours[i])
-			// .attr('stroke-width', 1)
-			.attr('fill', config.fill_colours[i])
-			.attr('x', d => xScale(d.date))
-			// .attr('y', d => yScale(d.value))
-			.attr('y', d => yScale(0))
-			.attr('height', d => {
-				console.log(height, d, yScale(Math.abs(d.value) -yScale(0)))
-				return (height - margin.top - margin.bottom) - yScale(d.value)
-			})
-			.attr('width', width / data.length)
-	} else {
-		// lines for the rest
-		svg.append('path')
-			.datum(variable)
-			.attr('fill', 'none')
-			.attr('stroke', config.fill_colours[i])
-			.attr('stroke-width', 2)
-			.attr('d', lineGenerator(variable, xScale));
-	}
-
-
-	
-
-	// tooltip highlights
-	svg.append('g')
-		.append('circle')
-		.attr('class', `highlight highlight-${i}`)
-		.attr('r', 5)
-		.attr('fill', config.fill_colours[i])
-		.style('display', 'none');
-};
-
 function handleMouseMove() {
 	const bisectDate = d3.bisector(dataPoint => dataPoint.date).left;
 	
@@ -133,6 +79,49 @@ function handleMouseOut() {
 }
 
 
+// FUNCTIONS 
+const drawData = (svg, metric, i, data, config) => {
+	// prep variables for chart
+	const variable = data.map(d => {
+		d.value = parseInt(d[metric]);
+		return (({date, value}) => ({date, value}))(d);
+	});
+
+	if (metric === 'work') {
+		// bars
+		svg.append('g')
+			.attr('class', 'bar')
+			.selectAll('rect')
+			.data(variable)
+			.join('rect')
+			// .attr('stroke', config.fill_colours[i])
+			// .attr('stroke-width', 1)
+			.attr('fill', config.fill_colours[i])
+			.attr('x', d => xScale(d.date))
+			.attr('y', d => yScale(0))
+			.attr('height', d => (height - margin.top - margin.bottom) - yScale(d.value))
+			.attr('width', width / data.length)
+	} else {
+		// lines for the rest
+		svg.append('path')
+			.datum(variable)
+			.attr('fill', 'none')
+			.attr('stroke', config.fill_colours[i])
+			.attr('stroke-width', 2)
+			.attr('d', lineGenerator(variable, xScale));
+	}
+
+
+	
+
+	// tooltip highlights
+	svg.append('g')
+		.append('circle')
+		.attr('class', `highlight highlight-${i}`)
+		.attr('r', 5)
+		.attr('fill', config.fill_colours[i])
+		.style('display', 'none');
+};
 
 const init = async (data, config, el) => {
 	// console.log(data)
@@ -154,6 +143,12 @@ const init = async (data, config, el) => {
 		drawData(svg, metric, i, data, config);
 	});
 };
+
+const lineGenerator = (data, x) => {
+	return d3.line() 
+		.x(d => xScale(d.date))
+		.y(d => yScale(d.value))
+}
 
 const setupAxes = (data, metric) => {
 	yScaleMetric = metric;

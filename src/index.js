@@ -16,7 +16,6 @@ let container, width;
 const dataUrl = 'https://gist.githubusercontent.com/njgriffiths/c0a987372baea607f22506e1cd6b4e1c/raw/086fcbd214433e2e2b648ee3df9616bafef95183/covid-mobility.csv';
 
 const config = {
-	
 	chart_variables: ['work','transit','driving'],
 	fill_colours: ['#A7A9AB','#0062A3','darkred'],
 	y_scale_metric: 'driving'
@@ -32,50 +31,118 @@ const addLabel = (d, el, group) => {
 	label.className = `label ${group}`;
 
 	el.prepend(label);
-}
+};
 
 const buildCharts = (data) => {
-	data.forEach((d,i) => {
-		// create the chart element
-		const container = document.createElement('div');
-		const group = d.key.toLowerCase().replace(' ', '-');
-		container.id = `${group}`;
-		container.className = 'chart region';
-		charts.prepend(container);
+	data
+		// sort data by region name
+		.sort((a,b) => (a.key.toLowerCase().replace(/\s/g, '') > b.key.toLowerCase().replace(/\s/g, '')) ? -1 : 1)
+		.forEach((d,i) => {
+			// create the chart element
+			const container = document.createElement('div');
+			const group = d.key.toLowerCase().replace(' ', '-');
+			container.id = `${group}`;
+			container.className = `chart ${d.class_name}`;
+			charts.prepend(container);
 
-		// add region name
-		addLabel(d, container, 'group');
+			// add region name
+			addLabel(d, container, 'group');
 
-		// get chart with
-		width = container.offsetWidth;
+			// get chart with
+			width = container.offsetWidth;
 
-		Chart.init(d.data, config,container);
+			// init chart
+			Chart.init(d.data, config,container);
+		});
+};
+
+const fadeIn = (selectorString) => {
+	const elements = document.querySelectorAll(selectorString);
+	elements.forEach(el => {
+		el.style.opacity = 1;
+		el.className += ' focus';
+	});
+
+	console.log(selectorString)
+	console.log(elements)
+};
+
+const fadeOut = (selectorString) => {
+	const elements = document.querySelectorAll(selectorString);
+	elements.forEach(el => {
+		el.style.opacity = 0.5;
+		el.classList.remove('focus');
 	});
 };
 
 const groupBy = (array, key) => {
-  return array.reduce(function(result, x) {
-    (result[x[key]] = result[x[key]] || []).push(x);
+	return array.reduce(function(result, x) {
+		(result[x[key]] = result[x[key]] || []).push(x);
 
-    return result
-  }, {});
+		return result
+	}, {});
+};
+
+const setupScroller = (scroller) => {
+	// setup the scroller instance, pass callback functions
+	scroller
+		.setup({
+			offset: 0.75,
+			step: '.step',
+		})
+		.onStepEnter(resp => {
+			// { element, index, direction }
+			const index = resp.index;
+			const dir = resp.direction;
+
+			if (index >= 0 && dir === 'down') {
+				// fade  out
+				fadeOut('.scrollyteller .chart');
+
+				// refocus selected item
+				fadeIn(`.scrollyteller .f${index + 1}`);
+			} else if (index === 0 && dir === 'up') {
+				// fade in
+				fadeIn('.scrollyteller .chart');
+			}
+
+			console.log(index, dir)
+		})
+		.onStepExit(resp => {
+			// { element, index, direction }
+			if (resp.index === 3 && resp.direction === 'down') {
+				// fade in
+				fadeIn('.scrollyteller .chart');
+
+				// disable pointer-events
+				const overlay = document.querySelectorAll('#charts .overlay');
+				overlay.forEach(el => {
+					el.className += ' no-events'
+				})
+			}
+		});
+
+	// setup resize event
+	window.addEventListener('resize', scroller.resize);
 };
 
 const transformData = (data) => {
 	// group by region
 	const grouped = groupBy(data, 'region');
 
-	const nested = Object.keys(grouped).map(d => {
+	return Object.keys(grouped).map(d => {
+		let className = grouped[d][grouped[d].length - 1].driving > 0 ? 'f1' : 'f2';
+		className = d === 'Seoul' ? 'f3' : className;
 		return {
 			key: d,
+			class_name: className,
 			data: grouped[d].map(({date, driving, transit, work}) => ({date, driving: driving, transit: transit, work: work}))
 		}
 	});
-
-	return nested;
 };
 
-// JS
+
+// Let's kick this off!
 const init = async () => {
 	// scrollama!
 	const scroller = scrollama();
@@ -98,33 +165,7 @@ const init = async () => {
 	const data = transformData(resp);
 	buildCharts(data, '.chart');
 	
-	// setup the scroller instance, pass callback functions
-	scroller
-		.setup({
-			offset: 0.75,
-			step: '.step',
-		})
-		.onStepEnter(resp => {
-			// { element, index, direction }
-
-			const imgs = document.querySelectorAll('.scrollyteller img');
-			imgs.forEach(img => {
-				img.style.opacity = 0.5;
-				img.classList.remove('focus');
-			});
-
-			const focus = document.querySelectorAll(`.scrollyteller img.f${resp.index}`);
-			focus.forEach(img => {
-				img.style.opacity = 1;
-				img.className += ' focus';
-			});
-		})
-		.onStepExit(resp => {
-			// { element, index, direction }
-		});
-
-	// setup resize event
-	window.addEventListener('resize', scroller.resize);
+	setupScroller(scroller);
 };
 
 
