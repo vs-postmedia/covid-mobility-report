@@ -17,69 +17,6 @@ const margin = {
 
 
 
-
-function handleMouseMove() {
-	const bisectDate = d3.bisector(dataPoint => dataPoint.date).left;
-	
-	// get x-value of current mouse position
-	const xValue = x.invert(d3.pointer(event)[0]);
-
-	// Get the index of the xValue relative to the dataSet & the datapoints on the left & right of the index
-	const dataIndex = bisectDate(dataCache, xValue, 1);
-	const leftData = dataCache[dataIndex - 1];
-	const rightData = dataCache[dataIndex];
-
-	// i dunno, sometimes rightData doesn't work... <shrug>
-	if (rightData) {
-		// determine if xPos is closer to the left or right data point
-		const dataPoint = xValue - leftData.date > rightData.date - xValue ? leftData : rightData;
-
-		// because we aren't currently showing recoveries... (there's a better way, I know...)
-		// d3.select('.highlight-0')
-		// 	.style('display', null)
-		// 	.attr('transform', `translate(${x(dataPoint.date)}, ${y(parseInt(dataPoint.cumulative_recovered))})`);
-
-		d3.select('.highlight-0')
-			.style('display', null)
-			.attr('transform', `translate(${x(dataPoint.date)}, ${y(parseInt(dataPoint.active_cases))})`);
-
-		d3.select('.highlight-1')
-			.style('display', null)
-			.attr('transform', `translate(${x(dataPoint.date)}, ${y(parseInt(dataPoint.cumulative_deaths))})`);
-
-		//
-		showTooltip(dataPoint);	
-	}
-}
-
-function showTooltip(data) {
-	const pageXpadding = 15;
-	const content = tooltipTemplate(data);
-
-	const tooltip = d3.select('.tooltip-container')
-		.html(content);
-
-	const width = d3.select('.tooltip-container')
-		.style('width')
-
-	// tooltip left/right of pointer to keep from getting pushed off screen
-	const left = event.pageX > parseInt(width) ? event.pageX - (parseInt(width) + pageXpadding)  : event.pageX + pageXpadding;
-
-	d3.select('.tooltip-container')
-		.style('display', null)
-		.style('top', `${event.pageY - 15}px`)
-		.style('left', `${left}px`);
-}
-
-function handleMouseOut() {
-	d3.selectAll('.highlight')
-		.style('display', 'none');
-
-	d3.select('.tooltip-container')
-		.style('display', 'none');
-}
-
-
 // FUNCTIONS 
 const drawData = (svg, metric, i, data, config) => {
 	// prep variables for chart
@@ -132,7 +69,7 @@ const init = async (data, config, el) => {
 	// svg
 	svg = d3.select(el)
 		.append('svg')
-		.attr('viewBox', [0, 0, width, height])
+		.attr('viewBox', [0, 0, width, height]);
 
 	// axes & gridlines
 	setupAxes(data, config.y_scale_metric);
@@ -198,7 +135,6 @@ const yAxisGridlines = g => {
 
 const xSetup = (data) => {
 	return d3.scaleUtc()
-	// return d3.scaleOrdinal()
 		.domain(d3.extent(data, d => d.date ))
 		.range([ margin.left, width - margin.right ]);
 }
