@@ -42,7 +42,11 @@
 	margin-top: 7px;
 	text-align: center;
 }
-
+#app header .chart-desc {
+	color: var(--grey02);
+	font-family: BentonSansCond-RegItalic;
+	margin-top: 7px;
+}
 
 /* CHARTS */
 .wrapper .chart {

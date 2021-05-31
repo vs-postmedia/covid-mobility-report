@@ -6,14 +6,14 @@ import css from './chart.css';
 
 // THE GOOD STUFF
 let svg, height, width, xScale, yScale, yScaleBand, yScaleMetric;
-const cache = {};
+// const cache = {};
 const yTicks = 3;
 const opacity = 0.5;
 const margin = {
 	top: 10,
 	right: 5,
 	bottom: 25,
-	left: 30
+	left: 40
 };
 
 
@@ -127,8 +127,8 @@ const drawData = (svg, metric, i, data, config) => {
 
 const init = async (data, config, el) => {
 	// console.log(data)
-	cache.el = el;
-	cache.data = data;
+	// cache.el = el;
+	// cache.data = data;
 
 	// set height & width
 	height = d3.select(el).style('height').slice(0, -2) - margin.top - margin.bottom;
@@ -180,23 +180,25 @@ const xAxis = g => {
 };
 
 const yAxis = g => {
-	g.attr("transform", `translate(${margin.left},0)`)
+	g.attr('transform', `translate(${margin.left},0)`)
 		.attr('class', 'y-axis')
-		    .call(d3.axisLeft(yScale)
-		    	.ticks(yTicks)
+		    .call(
+		    	d3.axisLeft(yScale)
+		    		.ticks(yTicks)
+		    		.tickFormat(d => `${d}%`)
 		    )
-		    .call(g => g.select('.domain').remove()); // removed the line
+		    .call(g => g.select('.domain').remove()); // remove the line
 };
 
 const yAxisGridlines = g => {
-	g.attr("transform", `translate(${margin.left},0)`)
+	g.attr('transform', `translate(${margin.left},0)`)
 		.attr('class', 'gridline')
 		    .call(d3.axisLeft(yScale)
 		    	.ticks(yTicks)
 		    	.tickSize(-width + margin.left + margin.right)
 				.tickFormat('')
 		    )
-		    .call(g => g.select(".domain").remove()); // removed the line
+		    .call(g => g.select('.domain').remove()); // removed the line
 };
 
 const xSetup = (data) => {
