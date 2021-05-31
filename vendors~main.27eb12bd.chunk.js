@@ -99,27 +99,60 @@ function newInterval(floori, offseti, count, field) {
 
 /***/ }),
 /* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var global = __webpack_require__(6);
+var shared = __webpack_require__(97);
+var has = __webpack_require__(7);
+var uid = __webpack_require__(98);
+var NATIVE_SYMBOL = __webpack_require__(106);
+var USE_SYMBOL_AS_UID = __webpack_require__(237);
+
+var WellKnownSymbolsStore = shared('wks');
+var Symbol = global.Symbol;
+var createWellKnownSymbol = USE_SYMBOL_AS_UID ? Symbol : Symbol && Symbol.withoutSetter || uid;
+
+module.exports = function (name) {
+  if (!has(WellKnownSymbolsStore, name)) {
+    if (NATIVE_SYMBOL && has(Symbol, name)) WellKnownSymbolsStore[name] = Symbol[name];
+    else WellKnownSymbolsStore[name] = createWellKnownSymbol('Symbol.' + name);
+  } return WellKnownSymbolsStore[name];
+};
+
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports) {
+
+module.exports = function (exec) {
+  try {
+    return !!exec();
+  } catch (error) {
+    return true;
+  }
+};
+
+
+/***/ }),
+/* 4 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 
 // EXPORTS
-__webpack_require__.d(__webpack_exports__, "c", function() { return /* reexport */ bisector; });
-__webpack_require__.d(__webpack_exports__, "e", function() { return /* reexport */ src_extent; });
-__webpack_require__.d(__webpack_exports__, "g", function() { return /* reexport */ max_max; });
+__webpack_require__.d(__webpack_exports__, "d", function() { return /* reexport */ src_extent; });
+__webpack_require__.d(__webpack_exports__, "f", function() { return /* reexport */ max_max; });
 __webpack_require__.d(__webpack_exports__, "a", function() { return /* reexport */ axisBottom; });
 __webpack_require__.d(__webpack_exports__, "b", function() { return /* reexport */ axisLeft; });
-__webpack_require__.d(__webpack_exports__, "d", function() { return /* reexport */ dsv_csv; });
-__webpack_require__.d(__webpack_exports__, "i", function() { return /* reexport */ linear_linear; });
-__webpack_require__.d(__webpack_exports__, "j", function() { return /* reexport */ utcTime; });
-__webpack_require__.d(__webpack_exports__, "h", function() { return /* reexport */ pointer; });
-__webpack_require__.d(__webpack_exports__, "k", function() { return /* reexport */ src_select; });
-__webpack_require__.d(__webpack_exports__, "l", function() { return /* reexport */ src_selectAll; });
-__webpack_require__.d(__webpack_exports__, "f", function() { return /* reexport */ src_line; });
-__webpack_require__.d(__webpack_exports__, "m", function() { return /* reexport */ src["a" /* utcFormat */]; });
-__webpack_require__.d(__webpack_exports__, "n", function() { return /* reexport */ src["b" /* utcParse */]; });
+__webpack_require__.d(__webpack_exports__, "c", function() { return /* reexport */ dsv_csv; });
+__webpack_require__.d(__webpack_exports__, "g", function() { return /* reexport */ linear_linear; });
+__webpack_require__.d(__webpack_exports__, "h", function() { return /* reexport */ utcTime; });
+__webpack_require__.d(__webpack_exports__, "i", function() { return /* reexport */ src_select; });
+__webpack_require__.d(__webpack_exports__, "e", function() { return /* reexport */ src_line; });
+__webpack_require__.d(__webpack_exports__, "j", function() { return /* reexport */ src["a" /* utcFormat */]; });
+__webpack_require__.d(__webpack_exports__, "k", function() { return /* reexport */ src["b" /* utcParse */]; });
 
-// UNUSED EXPORTS: version, bisect, bisectRight, bisectLeft, bisectCenter, ascending, count, cross, cumsum, descending, deviation, Adder, fsum, fcumsum, group, groups, index, indexes, rollup, rollups, groupSort, bin, histogram, thresholdFreedmanDiaconis, thresholdScott, thresholdSturges, maxIndex, mean, median, merge, min, minIndex, nice, pairs, permute, quantile, quantileSorted, quickselect, range, least, leastIndex, greatest, greatestIndex, scan, shuffle, shuffler, sum, ticks, tickIncrement, tickStep, transpose, variance, zip, every, some, filter, map, reduce, reverse, sort, difference, disjoint, intersection, subset, superset, union, InternMap, InternSet, axisTop, axisRight, brush, brushX, brushY, brushSelection, chord, chordTranspose, chordDirected, ribbon, ribbonArrow, color, rgb, hsl, lab, hcl, lch, gray, cubehelix, contours, contourDensity, Delaunay, Voronoi, dispatch, drag, dragDisable, dragEnable, dsvFormat, csvParse, csvParseRows, csvFormat, csvFormatBody, csvFormatRows, csvFormatRow, csvFormatValue, tsvParse, tsvParseRows, tsvFormat, tsvFormatBody, tsvFormatRows, tsvFormatRow, tsvFormatValue, autoType, easeLinear, easeQuad, easeQuadIn, easeQuadOut, easeQuadInOut, easeCubic, easeCubicIn, easeCubicOut, easeCubicInOut, easePoly, easePolyIn, easePolyOut, easePolyInOut, easeSin, easeSinIn, easeSinOut, easeSinInOut, easeExp, easeExpIn, easeExpOut, easeExpInOut, easeCircle, easeCircleIn, easeCircleOut, easeCircleInOut, easeBounce, easeBounceIn, easeBounceOut, easeBounceInOut, easeBack, easeBackIn, easeBackOut, easeBackInOut, easeElastic, easeElasticIn, easeElasticOut, easeElasticInOut, blob, buffer, dsv, tsv, image, json, text, xml, html, svg, forceCenter, forceCollide, forceLink, forceManyBody, forceRadial, forceSimulation, forceX, forceY, formatDefaultLocale, format, formatPrefix, formatLocale, formatSpecifier, FormatSpecifier, precisionFixed, precisionPrefix, precisionRound, geoArea, geoBounds, geoCentroid, geoCircle, geoClipAntimeridian, geoClipCircle, geoClipExtent, geoClipRectangle, geoContains, geoDistance, geoGraticule, geoGraticule10, geoInterpolate, geoLength, geoPath, geoAlbers, geoAlbersUsa, geoAzimuthalEqualArea, geoAzimuthalEqualAreaRaw, geoAzimuthalEquidistant, geoAzimuthalEquidistantRaw, geoConicConformal, geoConicConformalRaw, geoConicEqualArea, geoConicEqualAreaRaw, geoConicEquidistant, geoConicEquidistantRaw, geoEqualEarth, geoEqualEarthRaw, geoEquirectangular, geoEquirectangularRaw, geoGnomonic, geoGnomonicRaw, geoIdentity, geoProjection, geoProjectionMutator, geoMercator, geoMercatorRaw, geoNaturalEarth1, geoNaturalEarth1Raw, geoOrthographic, geoOrthographicRaw, geoStereographic, geoStereographicRaw, geoTransverseMercator, geoTransverseMercatorRaw, geoRotation, geoStream, geoTransform, cluster, hierarchy, pack, packSiblings, packEnclose, partition, stratify, tree, treemap, treemapBinary, treemapDice, treemapSlice, treemapSliceDice, treemapSquarify, treemapResquarify, interpolate, interpolateArray, interpolateBasis, interpolateBasisClosed, interpolateDate, interpolateDiscrete, interpolateHue, interpolateNumber, interpolateNumberArray, interpolateObject, interpolateRound, interpolateString, interpolateTransformCss, interpolateTransformSvg, interpolateZoom, interpolateRgb, interpolateRgbBasis, interpolateRgbBasisClosed, interpolateHsl, interpolateHslLong, interpolateLab, interpolateHcl, interpolateHclLong, interpolateCubehelix, interpolateCubehelixLong, piecewise, quantize, path, polygonArea, polygonCentroid, polygonHull, polygonContains, polygonLength, quadtree, randomUniform, randomInt, randomNormal, randomLogNormal, randomBates, randomIrwinHall, randomExponential, randomPareto, randomBernoulli, randomGeometric, randomBinomial, randomGamma, randomBeta, randomWeibull, randomCauchy, randomLogistic, randomPoisson, randomLcg, scaleBand, scalePoint, scaleIdentity, scaleLog, scaleSymlog, scaleOrdinal, scaleImplicit, scalePow, scaleSqrt, scaleRadial, scaleQuantile, scaleQuantize, scaleThreshold, scaleTime, scaleSequential, scaleSequentialLog, scaleSequentialPow, scaleSequentialSqrt, scaleSequentialSymlog, scaleSequentialQuantile, scaleDiverging, scaleDivergingLog, scaleDivergingPow, scaleDivergingSqrt, scaleDivergingSymlog, tickFormat, schemeCategory10, schemeAccent, schemeDark2, schemePaired, schemePastel1, schemePastel2, schemeSet1, schemeSet2, schemeSet3, schemeTableau10, interpolateBrBG, schemeBrBG, interpolatePRGn, schemePRGn, interpolatePiYG, schemePiYG, interpolatePuOr, schemePuOr, interpolateRdBu, schemeRdBu, interpolateRdGy, schemeRdGy, interpolateRdYlBu, schemeRdYlBu, interpolateRdYlGn, schemeRdYlGn, interpolateSpectral, schemeSpectral, interpolateBuGn, schemeBuGn, interpolateBuPu, schemeBuPu, interpolateGnBu, schemeGnBu, interpolateOrRd, schemeOrRd, interpolatePuBuGn, schemePuBuGn, interpolatePuBu, schemePuBu, interpolatePuRd, schemePuRd, interpolateRdPu, schemeRdPu, interpolateYlGnBu, schemeYlGnBu, interpolateYlGn, schemeYlGn, interpolateYlOrBr, schemeYlOrBr, interpolateYlOrRd, schemeYlOrRd, interpolateBlues, schemeBlues, interpolateGreens, schemeGreens, interpolateGreys, schemeGreys, interpolatePurples, schemePurples, interpolateReds, schemeReds, interpolateOranges, schemeOranges, interpolateCividis, interpolateCubehelixDefault, interpolateRainbow, interpolateWarm, interpolateCool, interpolateSinebow, interpolateTurbo, interpolateViridis, interpolateMagma, interpolateInferno, interpolatePlasma, create, creator, local, matcher, namespace, namespaces, pointers, selection, selector, selectorAll, style, window, arc, area, pie, areaRadial, radialArea, lineRadial, radialLine, pointRadial, linkHorizontal, linkVertical, linkRadial, symbol, symbols, symbolCircle, symbolCross, symbolDiamond, symbolSquare, symbolStar, symbolTriangle, symbolWye, curveBasisClosed, curveBasisOpen, curveBasis, curveBumpX, curveBumpY, curveBundle, curveCardinalClosed, curveCardinalOpen, curveCardinal, curveCatmullRomClosed, curveCatmullRomOpen, curveCatmullRom, curveLinearClosed, curveLinear, curveMonotoneX, curveMonotoneY, curveNatural, curveStep, curveStepAfter, curveStepBefore, stack, stackOffsetExpand, stackOffsetDiverging, stackOffsetNone, stackOffsetSilhouette, stackOffsetWiggle, stackOrderAppearance, stackOrderAscending, stackOrderDescending, stackOrderInsideOut, stackOrderNone, stackOrderReverse, timeInterval, timeMillisecond, timeMilliseconds, utcMillisecond, utcMilliseconds, timeSecond, timeSeconds, utcSecond, utcSeconds, timeMinute, timeMinutes, timeHour, timeHours, timeDay, timeDays, timeWeek, timeWeeks, timeSunday, timeSundays, timeMonday, timeMondays, timeTuesday, timeTuesdays, timeWednesday, timeWednesdays, timeThursday, timeThursdays, timeFriday, timeFridays, timeSaturday, timeSaturdays, timeMonth, timeMonths, timeYear, timeYears, utcMinute, utcMinutes, utcHour, utcHours, utcDay, utcDays, utcWeek, utcWeeks, utcSunday, utcSundays, utcMonday, utcMondays, utcTuesday, utcTuesdays, utcWednesday, utcWednesdays, utcThursday, utcThursdays, utcFriday, utcFridays, utcSaturday, utcSaturdays, utcMonth, utcMonths, utcYear, utcYears, utcTicks, utcTickInterval, timeTicks, timeTickInterval, timeFormatDefaultLocale, timeFormat, timeParse, timeFormatLocale, isoFormat, isoParse, now, timer, timerFlush, timeout, interval, transition, active, interrupt, zoom, zoomTransform, zoomIdentity
+// UNUSED EXPORTS: version, bisect, bisectRight, bisectLeft, bisectCenter, ascending, bisector, count, cross, cumsum, descending, deviation, Adder, fsum, fcumsum, group, groups, index, indexes, rollup, rollups, groupSort, bin, histogram, thresholdFreedmanDiaconis, thresholdScott, thresholdSturges, maxIndex, mean, median, merge, min, minIndex, nice, pairs, permute, quantile, quantileSorted, quickselect, range, least, leastIndex, greatest, greatestIndex, scan, shuffle, shuffler, sum, ticks, tickIncrement, tickStep, transpose, variance, zip, every, some, filter, map, reduce, reverse, sort, difference, disjoint, intersection, subset, superset, union, InternMap, InternSet, axisTop, axisRight, brush, brushX, brushY, brushSelection, chord, chordTranspose, chordDirected, ribbon, ribbonArrow, color, rgb, hsl, lab, hcl, lch, gray, cubehelix, contours, contourDensity, Delaunay, Voronoi, dispatch, drag, dragDisable, dragEnable, dsvFormat, csvParse, csvParseRows, csvFormat, csvFormatBody, csvFormatRows, csvFormatRow, csvFormatValue, tsvParse, tsvParseRows, tsvFormat, tsvFormatBody, tsvFormatRows, tsvFormatRow, tsvFormatValue, autoType, easeLinear, easeQuad, easeQuadIn, easeQuadOut, easeQuadInOut, easeCubic, easeCubicIn, easeCubicOut, easeCubicInOut, easePoly, easePolyIn, easePolyOut, easePolyInOut, easeSin, easeSinIn, easeSinOut, easeSinInOut, easeExp, easeExpIn, easeExpOut, easeExpInOut, easeCircle, easeCircleIn, easeCircleOut, easeCircleInOut, easeBounce, easeBounceIn, easeBounceOut, easeBounceInOut, easeBack, easeBackIn, easeBackOut, easeBackInOut, easeElastic, easeElasticIn, easeElasticOut, easeElasticInOut, blob, buffer, dsv, tsv, image, json, text, xml, html, svg, forceCenter, forceCollide, forceLink, forceManyBody, forceRadial, forceSimulation, forceX, forceY, formatDefaultLocale, format, formatPrefix, formatLocale, formatSpecifier, FormatSpecifier, precisionFixed, precisionPrefix, precisionRound, geoArea, geoBounds, geoCentroid, geoCircle, geoClipAntimeridian, geoClipCircle, geoClipExtent, geoClipRectangle, geoContains, geoDistance, geoGraticule, geoGraticule10, geoInterpolate, geoLength, geoPath, geoAlbers, geoAlbersUsa, geoAzimuthalEqualArea, geoAzimuthalEqualAreaRaw, geoAzimuthalEquidistant, geoAzimuthalEquidistantRaw, geoConicConformal, geoConicConformalRaw, geoConicEqualArea, geoConicEqualAreaRaw, geoConicEquidistant, geoConicEquidistantRaw, geoEqualEarth, geoEqualEarthRaw, geoEquirectangular, geoEquirectangularRaw, geoGnomonic, geoGnomonicRaw, geoIdentity, geoProjection, geoProjectionMutator, geoMercator, geoMercatorRaw, geoNaturalEarth1, geoNaturalEarth1Raw, geoOrthographic, geoOrthographicRaw, geoStereographic, geoStereographicRaw, geoTransverseMercator, geoTransverseMercatorRaw, geoRotation, geoStream, geoTransform, cluster, hierarchy, pack, packSiblings, packEnclose, partition, stratify, tree, treemap, treemapBinary, treemapDice, treemapSlice, treemapSliceDice, treemapSquarify, treemapResquarify, interpolate, interpolateArray, interpolateBasis, interpolateBasisClosed, interpolateDate, interpolateDiscrete, interpolateHue, interpolateNumber, interpolateNumberArray, interpolateObject, interpolateRound, interpolateString, interpolateTransformCss, interpolateTransformSvg, interpolateZoom, interpolateRgb, interpolateRgbBasis, interpolateRgbBasisClosed, interpolateHsl, interpolateHslLong, interpolateLab, interpolateHcl, interpolateHclLong, interpolateCubehelix, interpolateCubehelixLong, piecewise, quantize, path, polygonArea, polygonCentroid, polygonHull, polygonContains, polygonLength, quadtree, randomUniform, randomInt, randomNormal, randomLogNormal, randomBates, randomIrwinHall, randomExponential, randomPareto, randomBernoulli, randomGeometric, randomBinomial, randomGamma, randomBeta, randomWeibull, randomCauchy, randomLogistic, randomPoisson, randomLcg, scaleBand, scalePoint, scaleIdentity, scaleLog, scaleSymlog, scaleOrdinal, scaleImplicit, scalePow, scaleSqrt, scaleRadial, scaleQuantile, scaleQuantize, scaleThreshold, scaleTime, scaleSequential, scaleSequentialLog, scaleSequentialPow, scaleSequentialSqrt, scaleSequentialSymlog, scaleSequentialQuantile, scaleDiverging, scaleDivergingLog, scaleDivergingPow, scaleDivergingSqrt, scaleDivergingSymlog, tickFormat, schemeCategory10, schemeAccent, schemeDark2, schemePaired, schemePastel1, schemePastel2, schemeSet1, schemeSet2, schemeSet3, schemeTableau10, interpolateBrBG, schemeBrBG, interpolatePRGn, schemePRGn, interpolatePiYG, schemePiYG, interpolatePuOr, schemePuOr, interpolateRdBu, schemeRdBu, interpolateRdGy, schemeRdGy, interpolateRdYlBu, schemeRdYlBu, interpolateRdYlGn, schemeRdYlGn, interpolateSpectral, schemeSpectral, interpolateBuGn, schemeBuGn, interpolateBuPu, schemeBuPu, interpolateGnBu, schemeGnBu, interpolateOrRd, schemeOrRd, interpolatePuBuGn, schemePuBuGn, interpolatePuBu, schemePuBu, interpolatePuRd, schemePuRd, interpolateRdPu, schemeRdPu, interpolateYlGnBu, schemeYlGnBu, interpolateYlGn, schemeYlGn, interpolateYlOrBr, schemeYlOrBr, interpolateYlOrRd, schemeYlOrRd, interpolateBlues, schemeBlues, interpolateGreens, schemeGreens, interpolateGreys, schemeGreys, interpolatePurples, schemePurples, interpolateReds, schemeReds, interpolateOranges, schemeOranges, interpolateCividis, interpolateCubehelixDefault, interpolateRainbow, interpolateWarm, interpolateCool, interpolateSinebow, interpolateTurbo, interpolateViridis, interpolateMagma, interpolateInferno, interpolatePlasma, create, creator, local, matcher, namespace, namespaces, pointer, pointers, selectAll, selection, selector, selectorAll, style, window, arc, area, pie, areaRadial, radialArea, lineRadial, radialLine, pointRadial, linkHorizontal, linkVertical, linkRadial, symbol, symbols, symbolCircle, symbolCross, symbolDiamond, symbolSquare, symbolStar, symbolTriangle, symbolWye, curveBasisClosed, curveBasisOpen, curveBasis, curveBumpX, curveBumpY, curveBundle, curveCardinalClosed, curveCardinalOpen, curveCardinal, curveCatmullRomClosed, curveCatmullRomOpen, curveCatmullRom, curveLinearClosed, curveLinear, curveMonotoneX, curveMonotoneY, curveNatural, curveStep, curveStepAfter, curveStepBefore, stack, stackOffsetExpand, stackOffsetDiverging, stackOffsetNone, stackOffsetSilhouette, stackOffsetWiggle, stackOrderAppearance, stackOrderAscending, stackOrderDescending, stackOrderInsideOut, stackOrderNone, stackOrderReverse, timeInterval, timeMillisecond, timeMilliseconds, utcMillisecond, utcMilliseconds, timeSecond, timeSeconds, utcSecond, utcSeconds, timeMinute, timeMinutes, timeHour, timeHours, timeDay, timeDays, timeWeek, timeWeeks, timeSunday, timeSundays, timeMonday, timeMondays, timeTuesday, timeTuesdays, timeWednesday, timeWednesdays, timeThursday, timeThursdays, timeFriday, timeFridays, timeSaturday, timeSaturdays, timeMonth, timeMonths, timeYear, timeYears, utcMinute, utcMinutes, utcHour, utcHours, utcDay, utcDays, utcWeek, utcWeeks, utcSunday, utcSundays, utcMonday, utcMondays, utcTuesday, utcTuesdays, utcWednesday, utcWednesdays, utcThursday, utcThursdays, utcFriday, utcFridays, utcSaturday, utcSaturdays, utcMonth, utcMonths, utcYear, utcYears, utcTicks, utcTickInterval, timeTicks, timeTickInterval, timeFormatDefaultLocale, timeFormat, timeParse, timeFormatLocale, isoFormat, isoParse, now, timer, timerFlush, timeout, interval, transition, active, interrupt, zoom, zoomTransform, zoomIdentity
 
 // CONCATENATED MODULE: ./node_modules/d3/dist/package.js
 var package_name = "d3";
@@ -138,59 +171,6 @@ var files = ["dist/**/*.js","index.js"];
 var scripts = {"pretest":"rimraf dist && mkdir dist && json2module package.json > dist/package.js && rollup -c","test":"tape 'test/**/*-test.js'","prepublishOnly":"yarn test","postpublish":"git push && git push --tags && cd ../d3.github.com && git pull && cp ../d3/dist/d3.js d3.v${npm_package_version%%.*}.js && cp ../d3/dist/d3.min.js d3.v${npm_package_version%%.*}.min.js && git add d3.v${npm_package_version%%.*}.js d3.v${npm_package_version%%.*}.min.js && git commit -m \"d3 ${npm_package_version}\" && git push && cd - && zip -j dist/d3.zip -- LICENSE README.md API.md CHANGES.md dist/d3.js dist/d3.min.js"};
 var devDependencies = {"json2module":"0.0","rimraf":"3","rollup":"2","rollup-plugin-ascii":"0.0","rollup-plugin-node-resolve":"5","rollup-plugin-terser":"7","tape":"4","tape-await":"0.1"};
 var dependencies = {"d3-array":"2","d3-axis":"2","d3-brush":"2","d3-chord":"2","d3-color":"2","d3-contour":"2","d3-delaunay":"5","d3-dispatch":"2","d3-drag":"2","d3-dsv":"2","d3-ease":"2","d3-fetch":"2","d3-force":"2","d3-format":"2","d3-geo":"2","d3-hierarchy":"2","d3-interpolate":"2","d3-path":"2","d3-polygon":"2","d3-quadtree":"2","d3-random":"2","d3-scale":"3","d3-scale-chromatic":"2","d3-selection":"2","d3-shape":"2","d3-time":"2","d3-time-format":"3","d3-timer":"2","d3-transition":"2","d3-zoom":"2"};
-
-// CONCATENATED MODULE: ./node_modules/d3-array/src/ascending.js
-/* harmony default export */ var ascending = (function(a, b) {
-  return a < b ? -1 : a > b ? 1 : a >= b ? 0 : NaN;
-});
-
-// CONCATENATED MODULE: ./node_modules/d3-array/src/bisector.js
-
-
-/* harmony default export */ var bisector = (function(f) {
-  let delta = f;
-  let compare = f;
-
-  if (f.length === 1) {
-    delta = (d, x) => f(d) - x;
-    compare = ascendingComparator(f);
-  }
-
-  function left(a, x, lo, hi) {
-    if (lo == null) lo = 0;
-    if (hi == null) hi = a.length;
-    while (lo < hi) {
-      const mid = (lo + hi) >>> 1;
-      if (compare(a[mid], x) < 0) lo = mid + 1;
-      else hi = mid;
-    }
-    return lo;
-  }
-
-  function right(a, x, lo, hi) {
-    if (lo == null) lo = 0;
-    if (hi == null) hi = a.length;
-    while (lo < hi) {
-      const mid = (lo + hi) >>> 1;
-      if (compare(a[mid], x) > 0) hi = mid;
-      else lo = mid + 1;
-    }
-    return lo;
-  }
-
-  function center(a, x, lo, hi) {
-    if (lo == null) lo = 0;
-    if (hi == null) hi = a.length;
-    const i = left(a, x, lo, hi - 1);
-    return i > lo && delta(a[i - 1], x) > -delta(a[i], x) ? i - 1 : i;
-  }
-
-  return {left, center, right};
-});
-
-function ascendingComparator(f) {
-  return (d, x) => ascending(f(d), x);
-}
 
 // CONCATENATED MODULE: ./node_modules/d3-array/src/extent.js
 /* harmony default export */ var src_extent = (function(values, valueof) {
@@ -933,7 +913,7 @@ function datum(node) {
 
 
 /* harmony default export */ var sort = (function(compare) {
-  if (!compare) compare = sort_ascending;
+  if (!compare) compare = ascending;
 
   function compareNode(a, b) {
     return a && b ? compare(a.__data__, b.__data__) : !a - !b;
@@ -951,7 +931,7 @@ function datum(node) {
   return new Selection(sortgroups, this._parents).order();
 });
 
-function sort_ascending(a, b) {
+function ascending(a, b) {
   return a < b ? -1 : a > b ? 1 : a >= b ? 0 : NaN;
 }
 
@@ -4566,6 +4546,59 @@ function tickStep(start, stop, count) {
   return stop < start ? -step1 : step1;
 }
 
+// CONCATENATED MODULE: ./node_modules/d3-array/src/ascending.js
+/* harmony default export */ var src_ascending = (function(a, b) {
+  return a < b ? -1 : a > b ? 1 : a >= b ? 0 : NaN;
+});
+
+// CONCATENATED MODULE: ./node_modules/d3-array/src/bisector.js
+
+
+/* harmony default export */ var bisector = (function(f) {
+  let delta = f;
+  let compare = f;
+
+  if (f.length === 1) {
+    delta = (d, x) => f(d) - x;
+    compare = ascendingComparator(f);
+  }
+
+  function left(a, x, lo, hi) {
+    if (lo == null) lo = 0;
+    if (hi == null) hi = a.length;
+    while (lo < hi) {
+      const mid = (lo + hi) >>> 1;
+      if (compare(a[mid], x) < 0) lo = mid + 1;
+      else hi = mid;
+    }
+    return lo;
+  }
+
+  function right(a, x, lo, hi) {
+    if (lo == null) lo = 0;
+    if (hi == null) hi = a.length;
+    while (lo < hi) {
+      const mid = (lo + hi) >>> 1;
+      if (compare(a[mid], x) > 0) hi = mid;
+      else lo = mid + 1;
+    }
+    return lo;
+  }
+
+  function center(a, x, lo, hi) {
+    if (lo == null) lo = 0;
+    if (hi == null) hi = a.length;
+    const i = left(a, x, lo, hi - 1);
+    return i > lo && delta(a[i - 1], x) > -delta(a[i], x) ? i - 1 : i;
+  }
+
+  return {left, center, right};
+});
+
+function ascendingComparator(f) {
+  return (d, x) => src_ascending(f(d), x);
+}
+
 // CONCATENATED MODULE: ./node_modules/d3-array/src/number.js
 /* harmony default export */ var d3_array_src_number = (function(x) {
   return x === null ? NaN : +x;
@@ -4593,7 +4626,7 @@ function* numbers(values, valueof) {
 
 
 
-const ascendingBisect = bisector(ascending);
+const ascendingBisect = bisector(src_ascending);
 const bisectRight = ascendingBisect.right;
 const bisectLeft = ascendingBisect.left;
 const bisectCenter = bisector(d3_array_src_number).center;
@@ -5623,16 +5656,6 @@ function utcTime() {
 
 
 
-// CONCATENATED MODULE: ./node_modules/d3-selection/src/selectAll.js
-
-
-
-/* harmony default export */ var src_selectAll = (function(selector) {
-  return typeof selector === "string"
-      ? new Selection([document.querySelectorAll(selector)], [document.documentElement])
-      : new Selection([selector == null ? [] : array(selector)], selection_root);
-});
-
 // CONCATENATED MODULE: ./node_modules/d3-selection/src/index.js
 
 
@@ -6594,50 +6617,14 @@ function defaultConstrain(transform, extent, translateExtent) {
 
 
 /***/ }),
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var global = __webpack_require__(6);
-var shared = __webpack_require__(96);
-var has = __webpack_require__(7);
-var uid = __webpack_require__(97);
-var NATIVE_SYMBOL = __webpack_require__(105);
-var USE_SYMBOL_AS_UID = __webpack_require__(237);
-
-var WellKnownSymbolsStore = shared('wks');
-var Symbol = global.Symbol;
-var createWellKnownSymbol = USE_SYMBOL_AS_UID ? Symbol : Symbol && Symbol.withoutSetter || uid;
-
-module.exports = function (name) {
-  if (!has(WellKnownSymbolsStore, name)) {
-    if (NATIVE_SYMBOL && has(Symbol, name)) WellKnownSymbolsStore[name] = Symbol[name];
-    else WellKnownSymbolsStore[name] = createWellKnownSymbol('Symbol.' + name);
-  } return WellKnownSymbolsStore[name];
-};
-
-
-/***/ }),
-/* 4 */
-/***/ (function(module, exports) {
-
-module.exports = function (exec) {
-  try {
-    return !!exec();
-  } catch (error) {
-    return true;
-  }
-};
-
-
-/***/ }),
 /* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var global = __webpack_require__(6);
-var getOwnPropertyDescriptor = __webpack_require__(90).f;
+var getOwnPropertyDescriptor = __webpack_require__(91).f;
 var createNonEnumerableProperty = __webpack_require__(12);
 var redefine = __webpack_require__(15);
-var setGlobal = __webpack_require__(54);
+var setGlobal = __webpack_require__(55);
 var copyConstructorProperties = __webpack_require__(232);
 var isForced = __webpack_require__(236);
 
@@ -6879,7 +6866,7 @@ module.exports = function (argument) {
 /* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var fails = __webpack_require__(4);
+var fails = __webpack_require__(3);
 
 // Thank's IE8 for his funny defineProperty
 module.exports = !fails(function () {
@@ -6894,8 +6881,8 @@ module.exports = !fails(function () {
 var global = __webpack_require__(6);
 var createNonEnumerableProperty = __webpack_require__(12);
 var has = __webpack_require__(7);
-var setGlobal = __webpack_require__(54);
-var inspectSource = __webpack_require__(94);
+var setGlobal = __webpack_require__(55);
+var inspectSource = __webpack_require__(95);
 var InternalStateModule = __webpack_require__(31);
 
 var getInternalState = InternalStateModule.get;
@@ -7044,9 +7031,9 @@ module.exports = function (it) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var DESCRIPTORS = __webpack_require__(14);
-var IE8_DOM_DEFINE = __webpack_require__(92);
+var IE8_DOM_DEFINE = __webpack_require__(93);
 var anObject = __webpack_require__(8);
-var toPrimitive = __webpack_require__(53);
+var toPrimitive = __webpack_require__(54);
 
 var nativeDefineProperty = Object.defineProperty;
 
@@ -7109,7 +7096,7 @@ function defaultLocale(definition) {
 /* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(66);
+module.exports = __webpack_require__(68);
 
 
 /***/ }),
@@ -7132,7 +7119,7 @@ module.exports = function (bitmap, value) {
 /* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var fails = __webpack_require__(4);
+var fails = __webpack_require__(3);
 var classof = __webpack_require__(30);
 
 var split = ''.split;
@@ -7167,8 +7154,8 @@ var global = __webpack_require__(6);
 var isObject = __webpack_require__(11);
 var createNonEnumerableProperty = __webpack_require__(12);
 var objectHas = __webpack_require__(7);
-var sharedKey = __webpack_require__(55);
-var hiddenKeys = __webpack_require__(56);
+var sharedKey = __webpack_require__(56);
+var hiddenKeys = __webpack_require__(57);
 
 var WeakMap = global.WeakMap;
 var set, get, has;
@@ -7230,7 +7217,7 @@ module.exports = {
 /***/ (function(module, exports, __webpack_require__) {
 
 var DESCRIPTORS = __webpack_require__(14);
-var fails = __webpack_require__(4);
+var fails = __webpack_require__(3);
 var has = __webpack_require__(7);
 
 var defineProperty = Object.defineProperty;
@@ -7328,7 +7315,7 @@ module.exports = function (argument) {
 
 "use strict";
 
-var fails = __webpack_require__(4);
+var fails = __webpack_require__(3);
 
 module.exports = function (METHOD_NAME, argument) {
   var method = [][METHOD_NAME];
@@ -7345,7 +7332,7 @@ module.exports = function (METHOD_NAME, argument) {
 
 var defineProperty = __webpack_require__(23).f;
 var has = __webpack_require__(7);
-var wellKnownSymbol = __webpack_require__(3);
+var wellKnownSymbol = __webpack_require__(2);
 
 var TO_STRING_TAG = wellKnownSymbol('toStringTag');
 
@@ -8155,6 +8142,22 @@ var days = day.range;
 /* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
+"use strict";
+
+var $ = __webpack_require__(5);
+var forEach = __webpack_require__(103);
+
+// `Array.prototype.forEach` method
+// https://tc39.github.io/ecma262/#sec-array.prototype.foreach
+$({ target: 'Array', proto: true, forced: [].forEach != forEach }, {
+  forEach: forEach
+});
+
+
+/***/ }),
+/* 54 */
+/***/ (function(module, exports, __webpack_require__) {
+
 var isObject = __webpack_require__(11);
 
 // `ToPrimitive` abstract operation
@@ -8172,7 +8175,7 @@ module.exports = function (input, PREFERRED_STRING) {
 
 
 /***/ }),
-/* 54 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var global = __webpack_require__(6);
@@ -8188,11 +8191,11 @@ module.exports = function (key, value) {
 
 
 /***/ }),
-/* 55 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var shared = __webpack_require__(96);
-var uid = __webpack_require__(97);
+var shared = __webpack_require__(97);
+var uid = __webpack_require__(98);
 
 var keys = shared('keys');
 
@@ -8202,14 +8205,14 @@ module.exports = function (key) {
 
 
 /***/ }),
-/* 56 */
+/* 57 */
 /***/ (function(module, exports) {
 
 module.exports = {};
 
 
 /***/ }),
-/* 57 */
+/* 58 */
 /***/ (function(module, exports) {
 
 // IE8- don't enum bug keys
@@ -8225,10 +8228,10 @@ module.exports = [
 
 
 /***/ }),
-/* 58 */
+/* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var aFunction = __webpack_require__(59);
+var aFunction = __webpack_require__(60);
 
 // optional / simple context binding
 module.exports = function (fn, that, length) {
@@ -8255,7 +8258,7 @@ module.exports = function (fn, that, length) {
 
 
 /***/ }),
-/* 59 */
+/* 60 */
 /***/ (function(module, exports) {
 
 module.exports = function (it) {
@@ -8266,7 +8269,7 @@ module.exports = function (it) {
 
 
 /***/ }),
-/* 60 */
+/* 61 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var classof = __webpack_require__(30);
@@ -8279,12 +8282,12 @@ module.exports = Array.isArray || function isArray(arg) {
 
 
 /***/ }),
-/* 61 */
+/* 62 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var fails = __webpack_require__(4);
-var wellKnownSymbol = __webpack_require__(3);
-var V8_VERSION = __webpack_require__(107);
+var fails = __webpack_require__(3);
+var wellKnownSymbol = __webpack_require__(2);
+var V8_VERSION = __webpack_require__(108);
 
 var SPECIES = wellKnownSymbol('species');
 
@@ -8304,11 +8307,11 @@ module.exports = function (METHOD_NAME) {
 
 
 /***/ }),
-/* 62 */
+/* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var internalObjectKeys = __webpack_require__(98);
-var enumBugKeys = __webpack_require__(57);
+var internalObjectKeys = __webpack_require__(99);
+var enumBugKeys = __webpack_require__(58);
 
 // `Object.keys` method
 // https://tc39.github.io/ecma262/#sec-object.keys
@@ -8318,13 +8321,13 @@ module.exports = Object.keys || function keys(O) {
 
 
 /***/ }),
-/* 63 */
+/* 64 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var $ = __webpack_require__(5);
-var exec = __webpack_require__(64);
+var exec = __webpack_require__(65);
 
 $({ target: 'RegExp', proto: true, forced: /./.exec !== exec }, {
   exec: exec
@@ -8332,12 +8335,12 @@ $({ target: 'RegExp', proto: true, forced: /./.exec !== exec }, {
 
 
 /***/ }),
-/* 64 */
+/* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var regexpFlags = __webpack_require__(108);
+var regexpFlags = __webpack_require__(109);
 var stickyHelpers = __webpack_require__(243);
 
 var nativeExec = RegExp.prototype.exec;
@@ -8426,7 +8429,7 @@ module.exports = patchedExec;
 
 
 /***/ }),
-/* 65 */
+/* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var toInteger = __webpack_require__(40);
@@ -8459,7 +8462,28 @@ module.exports = {
 
 
 /***/ }),
-/* 66 */
+/* 67 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var global = __webpack_require__(6);
+var DOMIterables = __webpack_require__(113);
+var forEach = __webpack_require__(103);
+var createNonEnumerableProperty = __webpack_require__(12);
+
+for (var COLLECTION_NAME in DOMIterables) {
+  var Collection = global[COLLECTION_NAME];
+  var CollectionPrototype = Collection && Collection.prototype;
+  // some Chrome versions have non-configurable methods on DOMTokenList
+  if (CollectionPrototype && CollectionPrototype.forEach !== forEach) try {
+    createNonEnumerableProperty(CollectionPrototype, 'forEach', forEach);
+  } catch (error) {
+    CollectionPrototype.forEach = forEach;
+  }
+}
+
+
+/***/ }),
+/* 68 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -9194,12 +9218,12 @@ try {
 
 
 /***/ }),
-/* 67 */
+/* 69 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var toPrimitive = __webpack_require__(53);
+var toPrimitive = __webpack_require__(54);
 var definePropertyModule = __webpack_require__(23);
 var createPropertyDescriptor = __webpack_require__(28);
 
@@ -9211,16 +9235,16 @@ module.exports = function (object, key, value) {
 
 
 /***/ }),
-/* 68 */
+/* 70 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var anObject = __webpack_require__(8);
-var defineProperties = __webpack_require__(117);
-var enumBugKeys = __webpack_require__(57);
-var hiddenKeys = __webpack_require__(56);
+var defineProperties = __webpack_require__(116);
+var enumBugKeys = __webpack_require__(58);
+var hiddenKeys = __webpack_require__(57);
 var html = __webpack_require__(253);
-var documentCreateElement = __webpack_require__(93);
-var sharedKey = __webpack_require__(55);
+var documentCreateElement = __webpack_require__(94);
+var sharedKey = __webpack_require__(56);
 
 var GT = '>';
 var LT = '<';
@@ -9295,16 +9319,16 @@ module.exports = Object.create || function create(O, Properties) {
 
 
 /***/ }),
-/* 69 */
+/* 71 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var toIndexedObject = __webpack_require__(22);
-var addToUnscopables = __webpack_require__(116);
+var addToUnscopables = __webpack_require__(115);
 var Iterators = __webpack_require__(34);
 var InternalStateModule = __webpack_require__(31);
-var defineIterator = __webpack_require__(118);
+var defineIterator = __webpack_require__(117);
 
 var ARRAY_ITERATOR = 'Array Iterator';
 var setInternalState = InternalStateModule.set;
@@ -9355,10 +9379,10 @@ addToUnscopables('entries');
 
 
 /***/ }),
-/* 70 */
+/* 72 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var wellKnownSymbol = __webpack_require__(3);
+var wellKnownSymbol = __webpack_require__(2);
 
 var TO_STRING_TAG = wellKnownSymbol('toStringTag');
 var test = {};
@@ -9369,12 +9393,12 @@ module.exports = String(test) === '[object z]';
 
 
 /***/ }),
-/* 71 */
+/* 73 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var TO_STRING_TAG_SUPPORT = __webpack_require__(70);
+var TO_STRING_TAG_SUPPORT = __webpack_require__(72);
 var classofRaw = __webpack_require__(30);
-var wellKnownSymbol = __webpack_require__(3);
+var wellKnownSymbol = __webpack_require__(2);
 
 var TO_STRING_TAG = wellKnownSymbol('toStringTag');
 // ES3 wrong here
@@ -9401,12 +9425,12 @@ module.exports = TO_STRING_TAG_SUPPORT ? classofRaw : function (it) {
 
 
 /***/ }),
-/* 72 */
+/* 74 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var classof = __webpack_require__(71);
+var classof = __webpack_require__(73);
 var Iterators = __webpack_require__(34);
-var wellKnownSymbol = __webpack_require__(3);
+var wellKnownSymbol = __webpack_require__(2);
 
 var ITERATOR = wellKnownSymbol('iterator');
 
@@ -9418,8 +9442,6 @@ module.exports = function (it) {
 
 
 /***/ }),
-/* 73 */,
-/* 74 */,
 /* 75 */,
 /* 76 */,
 /* 77 */,
@@ -9434,32 +9456,18 @@ module.exports = function (it) {
 /* 86 */,
 /* 87 */,
 /* 88 */,
-/* 89 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var $ = __webpack_require__(5);
-var forEach = __webpack_require__(102);
-
-// `Array.prototype.forEach` method
-// https://tc39.github.io/ecma262/#sec-array.prototype.foreach
-$({ target: 'Array', proto: true, forced: [].forEach != forEach }, {
-  forEach: forEach
-});
-
-
-/***/ }),
-/* 90 */
+/* 89 */,
+/* 90 */,
+/* 91 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var DESCRIPTORS = __webpack_require__(14);
-var propertyIsEnumerableModule = __webpack_require__(91);
+var propertyIsEnumerableModule = __webpack_require__(92);
 var createPropertyDescriptor = __webpack_require__(28);
 var toIndexedObject = __webpack_require__(22);
-var toPrimitive = __webpack_require__(53);
+var toPrimitive = __webpack_require__(54);
 var has = __webpack_require__(7);
-var IE8_DOM_DEFINE = __webpack_require__(92);
+var IE8_DOM_DEFINE = __webpack_require__(93);
 
 var nativeGetOwnPropertyDescriptor = Object.getOwnPropertyDescriptor;
 
@@ -9476,7 +9484,7 @@ exports.f = DESCRIPTORS ? nativeGetOwnPropertyDescriptor : function getOwnProper
 
 
 /***/ }),
-/* 91 */
+/* 92 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9496,12 +9504,12 @@ exports.f = NASHORN_BUG ? function propertyIsEnumerable(V) {
 
 
 /***/ }),
-/* 92 */
+/* 93 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var DESCRIPTORS = __webpack_require__(14);
-var fails = __webpack_require__(4);
-var createElement = __webpack_require__(93);
+var fails = __webpack_require__(3);
+var createElement = __webpack_require__(94);
 
 // Thank's IE8 for his funny defineProperty
 module.exports = !DESCRIPTORS && !fails(function () {
@@ -9512,7 +9520,7 @@ module.exports = !DESCRIPTORS && !fails(function () {
 
 
 /***/ }),
-/* 93 */
+/* 94 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var global = __webpack_require__(6);
@@ -9528,10 +9536,10 @@ module.exports = function (it) {
 
 
 /***/ }),
-/* 94 */
+/* 95 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var store = __webpack_require__(95);
+var store = __webpack_require__(96);
 
 var functionToString = Function.toString;
 
@@ -9546,11 +9554,11 @@ module.exports = store.inspectSource;
 
 
 /***/ }),
-/* 95 */
+/* 96 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var global = __webpack_require__(6);
-var setGlobal = __webpack_require__(54);
+var setGlobal = __webpack_require__(55);
 
 var SHARED = '__core-js_shared__';
 var store = global[SHARED] || setGlobal(SHARED, {});
@@ -9559,11 +9567,11 @@ module.exports = store;
 
 
 /***/ }),
-/* 96 */
+/* 97 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var IS_PURE = __webpack_require__(38);
-var store = __webpack_require__(95);
+var store = __webpack_require__(96);
 
 (module.exports = function (key, value) {
   return store[key] || (store[key] = value !== undefined ? value : {});
@@ -9575,7 +9583,7 @@ var store = __webpack_require__(95);
 
 
 /***/ }),
-/* 97 */
+/* 98 */
 /***/ (function(module, exports) {
 
 var id = 0;
@@ -9587,13 +9595,13 @@ module.exports = function (key) {
 
 
 /***/ }),
-/* 98 */
+/* 99 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var has = __webpack_require__(7);
 var toIndexedObject = __webpack_require__(22);
-var indexOf = __webpack_require__(99).indexOf;
-var hiddenKeys = __webpack_require__(56);
+var indexOf = __webpack_require__(100).indexOf;
+var hiddenKeys = __webpack_require__(57);
 
 module.exports = function (object, names) {
   var O = toIndexedObject(object);
@@ -9610,12 +9618,12 @@ module.exports = function (object, names) {
 
 
 /***/ }),
-/* 99 */
+/* 100 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var toIndexedObject = __webpack_require__(22);
 var toLength = __webpack_require__(18);
-var toAbsoluteIndex = __webpack_require__(100);
+var toAbsoluteIndex = __webpack_require__(101);
 
 // `Array.prototype.{ indexOf, includes }` methods implementation
 var createMethod = function (IS_INCLUDES) {
@@ -9648,7 +9656,7 @@ module.exports = {
 
 
 /***/ }),
-/* 100 */
+/* 101 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var toInteger = __webpack_require__(40);
@@ -9666,19 +9674,19 @@ module.exports = function (index, length) {
 
 
 /***/ }),
-/* 101 */
+/* 102 */
 /***/ (function(module, exports) {
 
 exports.f = Object.getOwnPropertySymbols;
 
 
 /***/ }),
-/* 102 */
+/* 103 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var $forEach = __webpack_require__(103).forEach;
+var $forEach = __webpack_require__(104).forEach;
 var arrayMethodIsStrict = __webpack_require__(41);
 var arrayMethodUsesToLength = __webpack_require__(32);
 
@@ -9693,14 +9701,14 @@ module.exports = (!STRICT_METHOD || !USES_TO_LENGTH) ? function forEach(callback
 
 
 /***/ }),
-/* 103 */
+/* 104 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var bind = __webpack_require__(58);
+var bind = __webpack_require__(59);
 var IndexedObject = __webpack_require__(29);
 var toObject = __webpack_require__(13);
 var toLength = __webpack_require__(18);
-var arraySpeciesCreate = __webpack_require__(104);
+var arraySpeciesCreate = __webpack_require__(105);
 
 var push = [].push;
 
@@ -9764,12 +9772,12 @@ module.exports = {
 
 
 /***/ }),
-/* 104 */
+/* 105 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var isObject = __webpack_require__(11);
-var isArray = __webpack_require__(60);
-var wellKnownSymbol = __webpack_require__(3);
+var isArray = __webpack_require__(61);
+var wellKnownSymbol = __webpack_require__(2);
 
 var SPECIES = wellKnownSymbol('species');
 
@@ -9790,10 +9798,10 @@ module.exports = function (originalArray, length) {
 
 
 /***/ }),
-/* 105 */
+/* 106 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var fails = __webpack_require__(4);
+var fails = __webpack_require__(3);
 
 module.exports = !!Object.getOwnPropertySymbols && !fails(function () {
   // Chrome 38 Symbol has incorrect toString conversion
@@ -9803,14 +9811,14 @@ module.exports = !!Object.getOwnPropertySymbols && !fails(function () {
 
 
 /***/ }),
-/* 106 */
+/* 107 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var $ = __webpack_require__(5);
-var $map = __webpack_require__(103).map;
-var arrayMethodHasSpeciesSupport = __webpack_require__(61);
+var $map = __webpack_require__(104).map;
+var arrayMethodHasSpeciesSupport = __webpack_require__(62);
 var arrayMethodUsesToLength = __webpack_require__(32);
 
 var HAS_SPECIES_SUPPORT = arrayMethodHasSpeciesSupport('map');
@@ -9828,7 +9836,7 @@ $({ target: 'Array', proto: true, forced: !HAS_SPECIES_SUPPORT || !USES_TO_LENGT
 
 
 /***/ }),
-/* 107 */
+/* 108 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var global = __webpack_require__(6);
@@ -9854,7 +9862,7 @@ module.exports = version && +version;
 
 
 /***/ }),
-/* 108 */
+/* 109 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9877,19 +9885,19 @@ module.exports = function () {
 
 
 /***/ }),
-/* 109 */
+/* 110 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var fixRegExpWellKnownSymbolLogic = __webpack_require__(110);
+var fixRegExpWellKnownSymbolLogic = __webpack_require__(111);
 var anObject = __webpack_require__(8);
 var toObject = __webpack_require__(13);
 var toLength = __webpack_require__(18);
 var toInteger = __webpack_require__(40);
 var requireObjectCoercible = __webpack_require__(17);
 var advanceStringIndex = __webpack_require__(244);
-var regExpExec = __webpack_require__(111);
+var regExpExec = __webpack_require__(112);
 
 var max = Math.max;
 var min = Math.min;
@@ -10019,17 +10027,17 @@ fixRegExpWellKnownSymbolLogic('replace', 2, function (REPLACE, nativeReplace, ma
 
 
 /***/ }),
-/* 110 */
+/* 111 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 // TODO: Remove from `core-js@4` since it's moved to entry points
-__webpack_require__(63);
+__webpack_require__(64);
 var redefine = __webpack_require__(15);
-var fails = __webpack_require__(4);
-var wellKnownSymbol = __webpack_require__(3);
-var regexpExec = __webpack_require__(64);
+var fails = __webpack_require__(3);
+var wellKnownSymbol = __webpack_require__(2);
+var regexpExec = __webpack_require__(65);
 var createNonEnumerableProperty = __webpack_require__(12);
 
 var SPECIES = wellKnownSymbol('species');
@@ -10151,11 +10159,11 @@ module.exports = function (KEY, length, exec, sham) {
 
 
 /***/ }),
-/* 111 */
+/* 112 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var classof = __webpack_require__(30);
-var regexpExec = __webpack_require__(64);
+var regexpExec = __webpack_require__(65);
 
 // `RegExpExec` abstract operation
 // https://tc39.github.io/ecma262/#sec-regexpexec
@@ -10176,27 +10184,6 @@ module.exports = function (R, S) {
   return regexpExec.call(R, S);
 };
 
-
-
-/***/ }),
-/* 112 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var global = __webpack_require__(6);
-var DOMIterables = __webpack_require__(113);
-var forEach = __webpack_require__(102);
-var createNonEnumerableProperty = __webpack_require__(12);
-
-for (var COLLECTION_NAME in DOMIterables) {
-  var Collection = global[COLLECTION_NAME];
-  var CollectionPrototype = Collection && Collection.prototype;
-  // some Chrome versions have non-configurable methods on DOMTokenList
-  if (CollectionPrototype && CollectionPrototype.forEach !== forEach) try {
-    createNonEnumerableProperty(CollectionPrototype, 'forEach', forEach);
-  } catch (error) {
-    CollectionPrototype.forEach = forEach;
-  }
-}
 
 
 /***/ }),
@@ -10242,73 +10229,6 @@ module.exports = {
 
 /***/ }),
 /* 114 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var $ = __webpack_require__(5);
-var fails = __webpack_require__(4);
-var isArray = __webpack_require__(60);
-var isObject = __webpack_require__(11);
-var toObject = __webpack_require__(13);
-var toLength = __webpack_require__(18);
-var createProperty = __webpack_require__(67);
-var arraySpeciesCreate = __webpack_require__(104);
-var arrayMethodHasSpeciesSupport = __webpack_require__(61);
-var wellKnownSymbol = __webpack_require__(3);
-var V8_VERSION = __webpack_require__(107);
-
-var IS_CONCAT_SPREADABLE = wellKnownSymbol('isConcatSpreadable');
-var MAX_SAFE_INTEGER = 0x1FFFFFFFFFFFFF;
-var MAXIMUM_ALLOWED_INDEX_EXCEEDED = 'Maximum allowed index exceeded';
-
-// We can't use this feature detection in V8 since it causes
-// deoptimization and serious performance degradation
-// https://github.com/zloirock/core-js/issues/679
-var IS_CONCAT_SPREADABLE_SUPPORT = V8_VERSION >= 51 || !fails(function () {
-  var array = [];
-  array[IS_CONCAT_SPREADABLE] = false;
-  return array.concat()[0] !== array;
-});
-
-var SPECIES_SUPPORT = arrayMethodHasSpeciesSupport('concat');
-
-var isConcatSpreadable = function (O) {
-  if (!isObject(O)) return false;
-  var spreadable = O[IS_CONCAT_SPREADABLE];
-  return spreadable !== undefined ? !!spreadable : isArray(O);
-};
-
-var FORCED = !IS_CONCAT_SPREADABLE_SUPPORT || !SPECIES_SUPPORT;
-
-// `Array.prototype.concat` method
-// https://tc39.github.io/ecma262/#sec-array.prototype.concat
-// with adding support of @@isConcatSpreadable and @@species
-$({ target: 'Array', proto: true, forced: FORCED }, {
-  concat: function concat(arg) { // eslint-disable-line no-unused-vars
-    var O = toObject(this);
-    var A = arraySpeciesCreate(O, 0);
-    var n = 0;
-    var i, k, length, len, E;
-    for (i = -1, length = arguments.length; i < length; i++) {
-      E = i === -1 ? O : arguments[i];
-      if (isConcatSpreadable(E)) {
-        len = toLength(E.length);
-        if (n + len > MAX_SAFE_INTEGER) throw TypeError(MAXIMUM_ALLOWED_INDEX_EXCEEDED);
-        for (k = 0; k < len; k++, n++) if (k in E) createProperty(A, n, E[k]);
-      } else {
-        if (n >= MAX_SAFE_INTEGER) throw TypeError(MAXIMUM_ALLOWED_INDEX_EXCEEDED);
-        createProperty(A, n++, E);
-      }
-    }
-    A.length = n;
-    return A;
-  }
-});
-
-
-/***/ }),
-/* 115 */
 /***/ (function(module, exports) {
 
 // a string of all valid unicode whitespaces
@@ -10317,11 +10237,11 @@ module.exports = '\u0009\u000A\u000B\u000C\u000D\u0020\u00A0\u1680\u2000\u2001\u
 
 
 /***/ }),
-/* 116 */
+/* 115 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var wellKnownSymbol = __webpack_require__(3);
-var create = __webpack_require__(68);
+var wellKnownSymbol = __webpack_require__(2);
+var create = __webpack_require__(70);
 var definePropertyModule = __webpack_require__(23);
 
 var UNSCOPABLES = wellKnownSymbol('unscopables');
@@ -10343,13 +10263,13 @@ module.exports = function (key) {
 
 
 /***/ }),
-/* 117 */
+/* 116 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var DESCRIPTORS = __webpack_require__(14);
 var definePropertyModule = __webpack_require__(23);
 var anObject = __webpack_require__(8);
-var objectKeys = __webpack_require__(62);
+var objectKeys = __webpack_require__(63);
 
 // `Object.defineProperties` method
 // https://tc39.github.io/ecma262/#sec-object.defineproperties
@@ -10365,22 +10285,22 @@ module.exports = DESCRIPTORS ? Object.defineProperties : function defineProperti
 
 
 /***/ }),
-/* 118 */
+/* 117 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var $ = __webpack_require__(5);
-var createIteratorConstructor = __webpack_require__(119);
-var getPrototypeOf = __webpack_require__(121);
+var createIteratorConstructor = __webpack_require__(118);
+var getPrototypeOf = __webpack_require__(120);
 var setPrototypeOf = __webpack_require__(255);
 var setToStringTag = __webpack_require__(42);
 var createNonEnumerableProperty = __webpack_require__(12);
 var redefine = __webpack_require__(15);
-var wellKnownSymbol = __webpack_require__(3);
+var wellKnownSymbol = __webpack_require__(2);
 var IS_PURE = __webpack_require__(38);
 var Iterators = __webpack_require__(34);
-var IteratorsCore = __webpack_require__(120);
+var IteratorsCore = __webpack_require__(119);
 
 var IteratorPrototype = IteratorsCore.IteratorPrototype;
 var BUGGY_SAFARI_ITERATORS = IteratorsCore.BUGGY_SAFARI_ITERATORS;
@@ -10462,13 +10382,13 @@ module.exports = function (Iterable, NAME, IteratorConstructor, next, DEFAULT, I
 
 
 /***/ }),
-/* 119 */
+/* 118 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var IteratorPrototype = __webpack_require__(120).IteratorPrototype;
-var create = __webpack_require__(68);
+var IteratorPrototype = __webpack_require__(119).IteratorPrototype;
+var create = __webpack_require__(70);
 var createPropertyDescriptor = __webpack_require__(28);
 var setToStringTag = __webpack_require__(42);
 var Iterators = __webpack_require__(34);
@@ -10485,15 +10405,15 @@ module.exports = function (IteratorConstructor, NAME, next) {
 
 
 /***/ }),
-/* 120 */
+/* 119 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var getPrototypeOf = __webpack_require__(121);
+var getPrototypeOf = __webpack_require__(120);
 var createNonEnumerableProperty = __webpack_require__(12);
 var has = __webpack_require__(7);
-var wellKnownSymbol = __webpack_require__(3);
+var wellKnownSymbol = __webpack_require__(2);
 var IS_PURE = __webpack_require__(38);
 
 var ITERATOR = wellKnownSymbol('iterator');
@@ -10529,12 +10449,12 @@ module.exports = {
 
 
 /***/ }),
-/* 121 */
+/* 120 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var has = __webpack_require__(7);
 var toObject = __webpack_require__(13);
-var sharedKey = __webpack_require__(55);
+var sharedKey = __webpack_require__(56);
 var CORRECT_PROTOTYPE_GETTER = __webpack_require__(254);
 
 var IE_PROTO = sharedKey('IE_PROTO');
@@ -10552,14 +10472,14 @@ module.exports = CORRECT_PROTOTYPE_GETTER ? Object.getPrototypeOf : function (O)
 
 
 /***/ }),
-/* 122 */
+/* 121 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var charAt = __webpack_require__(65).charAt;
+var charAt = __webpack_require__(66).charAt;
 var InternalStateModule = __webpack_require__(31);
-var defineIterator = __webpack_require__(118);
+var defineIterator = __webpack_require__(117);
 
 var STRING_ITERATOR = 'String Iterator';
 var setInternalState = InternalStateModule.set;
@@ -10588,11 +10508,11 @@ defineIterator(String, 'String', function (iterated) {
 
 
 /***/ }),
-/* 123 */
+/* 122 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var fails = __webpack_require__(4);
-var wellKnownSymbol = __webpack_require__(3);
+var fails = __webpack_require__(3);
+var wellKnownSymbol = __webpack_require__(2);
 var IS_PURE = __webpack_require__(38);
 
 var ITERATOR = wellKnownSymbol('iterator');
@@ -10627,7 +10547,7 @@ module.exports = !fails(function () {
 
 
 /***/ }),
-/* 124 */
+/* 123 */
 /***/ (function(module, exports) {
 
 module.exports = function (it, Constructor, name) {
@@ -10638,7 +10558,7 @@ module.exports = function (it, Constructor, name) {
 
 
 /***/ }),
-/* 125 */
+/* 124 */
 /***/ (function(module, exports, __webpack_require__) {
 
 (function (global, factory) {
@@ -11338,6 +11258,7 @@ return scrollama;
 
 
 /***/ }),
+/* 125 */,
 /* 126 */,
 /* 127 */,
 /* 128 */,
@@ -11472,7 +11393,7 @@ module.exports = g;
 /***/ (function(module, exports, __webpack_require__) {
 
 var global = __webpack_require__(6);
-var inspectSource = __webpack_require__(94);
+var inspectSource = __webpack_require__(95);
 
 var WeakMap = global.WeakMap;
 
@@ -11485,7 +11406,7 @@ module.exports = typeof WeakMap === 'function' && /native code/.test(inspectSour
 
 var has = __webpack_require__(7);
 var ownKeys = __webpack_require__(233);
-var getOwnPropertyDescriptorModule = __webpack_require__(90);
+var getOwnPropertyDescriptorModule = __webpack_require__(91);
 var definePropertyModule = __webpack_require__(23);
 
 module.exports = function (target, source) {
@@ -11505,7 +11426,7 @@ module.exports = function (target, source) {
 
 var getBuiltIn = __webpack_require__(39);
 var getOwnPropertyNamesModule = __webpack_require__(235);
-var getOwnPropertySymbolsModule = __webpack_require__(101);
+var getOwnPropertySymbolsModule = __webpack_require__(102);
 var anObject = __webpack_require__(8);
 
 // all object keys, includes non-enumerable and symbols
@@ -11529,8 +11450,8 @@ module.exports = global;
 /* 235 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var internalObjectKeys = __webpack_require__(98);
-var enumBugKeys = __webpack_require__(57);
+var internalObjectKeys = __webpack_require__(99);
+var enumBugKeys = __webpack_require__(58);
 
 var hiddenKeys = enumBugKeys.concat('length', 'prototype');
 
@@ -11545,7 +11466,7 @@ exports.f = Object.getOwnPropertyNames || function getOwnPropertyNames(O) {
 /* 236 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var fails = __webpack_require__(4);
+var fails = __webpack_require__(3);
 
 var replacement = /#|\.prototype\./;
 
@@ -11572,7 +11493,7 @@ module.exports = isForced;
 /* 237 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var NATIVE_SYMBOL = __webpack_require__(105);
+var NATIVE_SYMBOL = __webpack_require__(106);
 
 module.exports = NATIVE_SYMBOL
   // eslint-disable-next-line no-undef
@@ -11617,7 +11538,7 @@ $({ target: 'Array', proto: true, forced: !STRICT_METHOD || !USES_TO_LENGTH }, {
 /* 240 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var aFunction = __webpack_require__(59);
+var aFunction = __webpack_require__(60);
 var toObject = __webpack_require__(13);
 var IndexedObject = __webpack_require__(29);
 var toLength = __webpack_require__(18);
@@ -11666,9 +11587,9 @@ module.exports = {
 "use strict";
 
 var $ = __webpack_require__(5);
-var aFunction = __webpack_require__(59);
+var aFunction = __webpack_require__(60);
 var toObject = __webpack_require__(13);
-var fails = __webpack_require__(4);
+var fails = __webpack_require__(3);
 var arrayMethodIsStrict = __webpack_require__(41);
 
 var test = [];
@@ -11704,8 +11625,8 @@ $({ target: 'Array', proto: true, forced: FORCED }, {
 
 var $ = __webpack_require__(5);
 var toObject = __webpack_require__(13);
-var nativeKeys = __webpack_require__(62);
-var fails = __webpack_require__(4);
+var nativeKeys = __webpack_require__(63);
+var fails = __webpack_require__(3);
 
 var FAILS_ON_PRIMITIVES = fails(function () { nativeKeys(1); });
 
@@ -11725,7 +11646,7 @@ $({ target: 'Object', stat: true, forced: FAILS_ON_PRIMITIVES }, {
 "use strict";
 
 
-var fails = __webpack_require__(4);
+var fails = __webpack_require__(3);
 
 // babel-minify transpiles RegExp('a', 'y') -> /a/y and it causes SyntaxError,
 // so we use an intermediate function.
@@ -11754,7 +11675,7 @@ exports.BROKEN_CARET = fails(function () {
 
 "use strict";
 
-var charAt = __webpack_require__(65).charAt;
+var charAt = __webpack_require__(66).charAt;
 
 // `AdvanceStringIndex` abstract operation
 // https://tc39.github.io/ecma262/#sec-advancestringindex
@@ -11765,998 +11686,6 @@ module.exports = function (S, index, unicode) {
 
 /***/ }),
 /* 245 */
-/***/ (function(module, exports) {
-
-/**
- * Copyright 2016 Google Inc. All Rights Reserved.
- *
- * Licensed under the W3C SOFTWARE AND DOCUMENT NOTICE AND LICENSE.
- *
- *  https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
- *
- */
-(function() {
-'use strict';
-
-// Exit early if we're not running in a browser.
-if (typeof window !== 'object') {
-  return;
-}
-
-// Exit early if all IntersectionObserver and IntersectionObserverEntry
-// features are natively supported.
-if ('IntersectionObserver' in window &&
-    'IntersectionObserverEntry' in window &&
-    'intersectionRatio' in window.IntersectionObserverEntry.prototype) {
-
-  // Minimal polyfill for Edge 15's lack of `isIntersecting`
-  // See: https://github.com/w3c/IntersectionObserver/issues/211
-  if (!('isIntersecting' in window.IntersectionObserverEntry.prototype)) {
-    Object.defineProperty(window.IntersectionObserverEntry.prototype,
-      'isIntersecting', {
-      get: function () {
-        return this.intersectionRatio > 0;
-      }
-    });
-  }
-  return;
-}
-
-/**
- * Returns the embedding frame element, if any.
- * @param {!Document} doc
- * @return {!Element}
- */
-function getFrameElement(doc) {
-  try {
-    return doc.defaultView && doc.defaultView.frameElement || null;
-  } catch (e) {
-    // Ignore the error.
-    return null;
-  }
-}
-
-/**
- * A local reference to the root document.
- */
-var document = (function(startDoc) {
-  var doc = startDoc;
-  var frame = getFrameElement(doc);
-  while (frame) {
-    doc = frame.ownerDocument;
-    frame = getFrameElement(doc);
-  }
-  return doc;
-})(window.document);
-
-/**
- * An IntersectionObserver registry. This registry exists to hold a strong
- * reference to IntersectionObserver instances currently observing a target
- * element. Without this registry, instances without another reference may be
- * garbage collected.
- */
-var registry = [];
-
-/**
- * The signal updater for cross-origin intersection. When not null, it means
- * that the polyfill is configured to work in a cross-origin mode.
- * @type {function(DOMRect|ClientRect, DOMRect|ClientRect)}
- */
-var crossOriginUpdater = null;
-
-/**
- * The current cross-origin intersection. Only used in the cross-origin mode.
- * @type {DOMRect|ClientRect}
- */
-var crossOriginRect = null;
-
-
-/**
- * Creates the global IntersectionObserverEntry constructor.
- * https://w3c.github.io/IntersectionObserver/#intersection-observer-entry
- * @param {Object} entry A dictionary of instance properties.
- * @constructor
- */
-function IntersectionObserverEntry(entry) {
-  this.time = entry.time;
-  this.target = entry.target;
-  this.rootBounds = ensureDOMRect(entry.rootBounds);
-  this.boundingClientRect = ensureDOMRect(entry.boundingClientRect);
-  this.intersectionRect = ensureDOMRect(entry.intersectionRect || getEmptyRect());
-  this.isIntersecting = !!entry.intersectionRect;
-
-  // Calculates the intersection ratio.
-  var targetRect = this.boundingClientRect;
-  var targetArea = targetRect.width * targetRect.height;
-  var intersectionRect = this.intersectionRect;
-  var intersectionArea = intersectionRect.width * intersectionRect.height;
-
-  // Sets intersection ratio.
-  if (targetArea) {
-    // Round the intersection ratio to avoid floating point math issues:
-    // https://github.com/w3c/IntersectionObserver/issues/324
-    this.intersectionRatio = Number((intersectionArea / targetArea).toFixed(4));
-  } else {
-    // If area is zero and is intersecting, sets to 1, otherwise to 0
-    this.intersectionRatio = this.isIntersecting ? 1 : 0;
-  }
-}
-
-
-/**
- * Creates the global IntersectionObserver constructor.
- * https://w3c.github.io/IntersectionObserver/#intersection-observer-interface
- * @param {Function} callback The function to be invoked after intersection
- *     changes have queued. The function is not invoked if the queue has
- *     been emptied by calling the `takeRecords` method.
- * @param {Object=} opt_options Optional configuration options.
- * @constructor
- */
-function IntersectionObserver(callback, opt_options) {
-
-  var options = opt_options || {};
-
-  if (typeof callback != 'function') {
-    throw new Error('callback must be a function');
-  }
-
-  if (options.root && options.root.nodeType != 1) {
-    throw new Error('root must be an Element');
-  }
-
-  // Binds and throttles `this._checkForIntersections`.
-  this._checkForIntersections = throttle(
-      this._checkForIntersections.bind(this), this.THROTTLE_TIMEOUT);
-
-  // Private properties.
-  this._callback = callback;
-  this._observationTargets = [];
-  this._queuedEntries = [];
-  this._rootMarginValues = this._parseRootMargin(options.rootMargin);
-
-  // Public properties.
-  this.thresholds = this._initThresholds(options.threshold);
-  this.root = options.root || null;
-  this.rootMargin = this._rootMarginValues.map(function(margin) {
-    return margin.value + margin.unit;
-  }).join(' ');
-
-  /** @private @const {!Array<!Document>} */
-  this._monitoringDocuments = [];
-  /** @private @const {!Array<function()>} */
-  this._monitoringUnsubscribes = [];
-}
-
-
-/**
- * The minimum interval within which the document will be checked for
- * intersection changes.
- */
-IntersectionObserver.prototype.THROTTLE_TIMEOUT = 100;
-
-
-/**
- * The frequency in which the polyfill polls for intersection changes.
- * this can be updated on a per instance basis and must be set prior to
- * calling `observe` on the first target.
- */
-IntersectionObserver.prototype.POLL_INTERVAL = null;
-
-/**
- * Use a mutation observer on the root element
- * to detect intersection changes.
- */
-IntersectionObserver.prototype.USE_MUTATION_OBSERVER = true;
-
-
-/**
- * Sets up the polyfill in the cross-origin mode. The result is the
- * updater function that accepts two arguments: `boundingClientRect` and
- * `intersectionRect` - just as these fields would be available to the
- * parent via `IntersectionObserverEntry`. This function should be called
- * each time the iframe receives intersection information from the parent
- * window, e.g. via messaging.
- * @return {function(DOMRect|ClientRect, DOMRect|ClientRect)}
- */
-IntersectionObserver._setupCrossOriginUpdater = function() {
-  if (!crossOriginUpdater) {
-    /**
-     * @param {DOMRect|ClientRect} boundingClientRect
-     * @param {DOMRect|ClientRect} intersectionRect
-     */
-    crossOriginUpdater = function(boundingClientRect, intersectionRect) {
-      if (!boundingClientRect || !intersectionRect) {
-        crossOriginRect = getEmptyRect();
-      } else {
-        crossOriginRect = convertFromParentRect(boundingClientRect, intersectionRect);
-      }
-      registry.forEach(function(observer) {
-        observer._checkForIntersections();
-      });
-    };
-  }
-  return crossOriginUpdater;
-};
-
-
-/**
- * Resets the cross-origin mode.
- */
-IntersectionObserver._resetCrossOriginUpdater = function() {
-  crossOriginUpdater = null;
-  crossOriginRect = null;
-};
-
-
-/**
- * Starts observing a target element for intersection changes based on
- * the thresholds values.
- * @param {Element} target The DOM element to observe.
- */
-IntersectionObserver.prototype.observe = function(target) {
-  var isTargetAlreadyObserved = this._observationTargets.some(function(item) {
-    return item.element == target;
-  });
-
-  if (isTargetAlreadyObserved) {
-    return;
-  }
-
-  if (!(target && target.nodeType == 1)) {
-    throw new Error('target must be an Element');
-  }
-
-  this._registerInstance();
-  this._observationTargets.push({element: target, entry: null});
-  this._monitorIntersections(target.ownerDocument);
-  this._checkForIntersections();
-};
-
-
-/**
- * Stops observing a target element for intersection changes.
- * @param {Element} target The DOM element to observe.
- */
-IntersectionObserver.prototype.unobserve = function(target) {
-  this._observationTargets =
-      this._observationTargets.filter(function(item) {
-        return item.element != target;
-      });
-  this._unmonitorIntersections(target.ownerDocument);
-  if (this._observationTargets.length == 0) {
-    this._unregisterInstance();
-  }
-};
-
-
-/**
- * Stops observing all target elements for intersection changes.
- */
-IntersectionObserver.prototype.disconnect = function() {
-  this._observationTargets = [];
-  this._unmonitorAllIntersections();
-  this._unregisterInstance();
-};
-
-
-/**
- * Returns any queue entries that have not yet been reported to the
- * callback and clears the queue. This can be used in conjunction with the
- * callback to obtain the absolute most up-to-date intersection information.
- * @return {Array} The currently queued entries.
- */
-IntersectionObserver.prototype.takeRecords = function() {
-  var records = this._queuedEntries.slice();
-  this._queuedEntries = [];
-  return records;
-};
-
-
-/**
- * Accepts the threshold value from the user configuration object and
- * returns a sorted array of unique threshold values. If a value is not
- * between 0 and 1 and error is thrown.
- * @private
- * @param {Array|number=} opt_threshold An optional threshold value or
- *     a list of threshold values, defaulting to [0].
- * @return {Array} A sorted list of unique and valid threshold values.
- */
-IntersectionObserver.prototype._initThresholds = function(opt_threshold) {
-  var threshold = opt_threshold || [0];
-  if (!Array.isArray(threshold)) threshold = [threshold];
-
-  return threshold.sort().filter(function(t, i, a) {
-    if (typeof t != 'number' || isNaN(t) || t < 0 || t > 1) {
-      throw new Error('threshold must be a number between 0 and 1 inclusively');
-    }
-    return t !== a[i - 1];
-  });
-};
-
-
-/**
- * Accepts the rootMargin value from the user configuration object
- * and returns an array of the four margin values as an object containing
- * the value and unit properties. If any of the values are not properly
- * formatted or use a unit other than px or %, and error is thrown.
- * @private
- * @param {string=} opt_rootMargin An optional rootMargin value,
- *     defaulting to '0px'.
- * @return {Array<Object>} An array of margin objects with the keys
- *     value and unit.
- */
-IntersectionObserver.prototype._parseRootMargin = function(opt_rootMargin) {
-  var marginString = opt_rootMargin || '0px';
-  var margins = marginString.split(/\s+/).map(function(margin) {
-    var parts = /^(-?\d*\.?\d+)(px|%)$/.exec(margin);
-    if (!parts) {
-      throw new Error('rootMargin must be specified in pixels or percent');
-    }
-    return {value: parseFloat(parts[1]), unit: parts[2]};
-  });
-
-  // Handles shorthand.
-  margins[1] = margins[1] || margins[0];
-  margins[2] = margins[2] || margins[0];
-  margins[3] = margins[3] || margins[1];
-
-  return margins;
-};
-
-
-/**
- * Starts polling for intersection changes if the polling is not already
- * happening, and if the page's visibility state is visible.
- * @param {!Document} doc
- * @private
- */
-IntersectionObserver.prototype._monitorIntersections = function(doc) {
-  var win = doc.defaultView;
-  if (!win) {
-    // Already destroyed.
-    return;
-  }
-  if (this._monitoringDocuments.indexOf(doc) != -1) {
-    // Already monitoring.
-    return;
-  }
-
-  // Private state for monitoring.
-  var callback = this._checkForIntersections;
-  var monitoringInterval = null;
-  var domObserver = null;
-
-  // If a poll interval is set, use polling instead of listening to
-  // resize and scroll events or DOM mutations.
-  if (this.POLL_INTERVAL) {
-    monitoringInterval = win.setInterval(callback, this.POLL_INTERVAL);
-  } else {
-    addEvent(win, 'resize', callback, true);
-    addEvent(doc, 'scroll', callback, true);
-    if (this.USE_MUTATION_OBSERVER && 'MutationObserver' in win) {
-      domObserver = new win.MutationObserver(callback);
-      domObserver.observe(doc, {
-        attributes: true,
-        childList: true,
-        characterData: true,
-        subtree: true
-      });
-    }
-  }
-
-  this._monitoringDocuments.push(doc);
-  this._monitoringUnsubscribes.push(function() {
-    // Get the window object again. When a friendly iframe is destroyed, it
-    // will be null.
-    var win = doc.defaultView;
-
-    if (win) {
-      if (monitoringInterval) {
-        win.clearInterval(monitoringInterval);
-      }
-      removeEvent(win, 'resize', callback, true);
-    }
-
-    removeEvent(doc, 'scroll', callback, true);
-    if (domObserver) {
-      domObserver.disconnect();
-    }
-  });
-
-  // Also monitor the parent.
-  if (doc != (this.root && this.root.ownerDocument || document)) {
-    var frame = getFrameElement(doc);
-    if (frame) {
-      this._monitorIntersections(frame.ownerDocument);
-    }
-  }
-};
-
-
-/**
- * Stops polling for intersection changes.
- * @param {!Document} doc
- * @private
- */
-IntersectionObserver.prototype._unmonitorIntersections = function(doc) {
-  var index = this._monitoringDocuments.indexOf(doc);
-  if (index == -1) {
-    return;
-  }
-
-  var rootDoc = (this.root && this.root.ownerDocument || document);
-
-  // Check if any dependent targets are still remaining.
-  var hasDependentTargets =
-      this._observationTargets.some(function(item) {
-        var itemDoc = item.element.ownerDocument;
-        // Target is in this context.
-        if (itemDoc == doc) {
-          return true;
-        }
-        // Target is nested in this context.
-        while (itemDoc && itemDoc != rootDoc) {
-          var frame = getFrameElement(itemDoc);
-          itemDoc = frame && frame.ownerDocument;
-          if (itemDoc == doc) {
-            return true;
-          }
-        }
-        return false;
-      });
-  if (hasDependentTargets) {
-    return;
-  }
-
-  // Unsubscribe.
-  var unsubscribe = this._monitoringUnsubscribes[index];
-  this._monitoringDocuments.splice(index, 1);
-  this._monitoringUnsubscribes.splice(index, 1);
-  unsubscribe();
-
-  // Also unmonitor the parent.
-  if (doc != rootDoc) {
-    var frame = getFrameElement(doc);
-    if (frame) {
-      this._unmonitorIntersections(frame.ownerDocument);
-    }
-  }
-};
-
-
-/**
- * Stops polling for intersection changes.
- * @param {!Document} doc
- * @private
- */
-IntersectionObserver.prototype._unmonitorAllIntersections = function() {
-  var unsubscribes = this._monitoringUnsubscribes.slice(0);
-  this._monitoringDocuments.length = 0;
-  this._monitoringUnsubscribes.length = 0;
-  for (var i = 0; i < unsubscribes.length; i++) {
-    unsubscribes[i]();
-  }
-};
-
-
-/**
- * Scans each observation target for intersection changes and adds them
- * to the internal entries queue. If new entries are found, it
- * schedules the callback to be invoked.
- * @private
- */
-IntersectionObserver.prototype._checkForIntersections = function() {
-  if (!this.root && crossOriginUpdater && !crossOriginRect) {
-    // Cross origin monitoring, but no initial data available yet.
-    return;
-  }
-
-  var rootIsInDom = this._rootIsInDom();
-  var rootRect = rootIsInDom ? this._getRootRect() : getEmptyRect();
-
-  this._observationTargets.forEach(function(item) {
-    var target = item.element;
-    var targetRect = getBoundingClientRect(target);
-    var rootContainsTarget = this._rootContainsTarget(target);
-    var oldEntry = item.entry;
-    var intersectionRect = rootIsInDom && rootContainsTarget &&
-        this._computeTargetAndRootIntersection(target, targetRect, rootRect);
-
-    var newEntry = item.entry = new IntersectionObserverEntry({
-      time: now(),
-      target: target,
-      boundingClientRect: targetRect,
-      rootBounds: crossOriginUpdater && !this.root ? null : rootRect,
-      intersectionRect: intersectionRect
-    });
-
-    if (!oldEntry) {
-      this._queuedEntries.push(newEntry);
-    } else if (rootIsInDom && rootContainsTarget) {
-      // If the new entry intersection ratio has crossed any of the
-      // thresholds, add a new entry.
-      if (this._hasCrossedThreshold(oldEntry, newEntry)) {
-        this._queuedEntries.push(newEntry);
-      }
-    } else {
-      // If the root is not in the DOM or target is not contained within
-      // root but the previous entry for this target had an intersection,
-      // add a new record indicating removal.
-      if (oldEntry && oldEntry.isIntersecting) {
-        this._queuedEntries.push(newEntry);
-      }
-    }
-  }, this);
-
-  if (this._queuedEntries.length) {
-    this._callback(this.takeRecords(), this);
-  }
-};
-
-
-/**
- * Accepts a target and root rect computes the intersection between then
- * following the algorithm in the spec.
- * TODO(philipwalton): at this time clip-path is not considered.
- * https://w3c.github.io/IntersectionObserver/#calculate-intersection-rect-algo
- * @param {Element} target The target DOM element
- * @param {Object} targetRect The bounding rect of the target.
- * @param {Object} rootRect The bounding rect of the root after being
- *     expanded by the rootMargin value.
- * @return {?Object} The final intersection rect object or undefined if no
- *     intersection is found.
- * @private
- */
-IntersectionObserver.prototype._computeTargetAndRootIntersection =
-    function(target, targetRect, rootRect) {
-  // If the element isn't displayed, an intersection can't happen.
-  if (window.getComputedStyle(target).display == 'none') return;
-
-  var intersectionRect = targetRect;
-  var parent = getParentNode(target);
-  var atRoot = false;
-
-  while (!atRoot && parent) {
-    var parentRect = null;
-    var parentComputedStyle = parent.nodeType == 1 ?
-        window.getComputedStyle(parent) : {};
-
-    // If the parent isn't displayed, an intersection can't happen.
-    if (parentComputedStyle.display == 'none') return null;
-
-    if (parent == this.root || parent.nodeType == /* DOCUMENT */ 9) {
-      atRoot = true;
-      if (parent == this.root || parent == document) {
-        if (crossOriginUpdater && !this.root) {
-          if (!crossOriginRect ||
-              crossOriginRect.width == 0 && crossOriginRect.height == 0) {
-            // A 0-size cross-origin intersection means no-intersection.
-            parent = null;
-            parentRect = null;
-            intersectionRect = null;
-          } else {
-            parentRect = crossOriginRect;
-          }
-        } else {
-          parentRect = rootRect;
-        }
-      } else {
-        // Check if there's a frame that can be navigated to.
-        var frame = getParentNode(parent);
-        var frameRect = frame && getBoundingClientRect(frame);
-        var frameIntersect =
-            frame &&
-            this._computeTargetAndRootIntersection(frame, frameRect, rootRect);
-        if (frameRect && frameIntersect) {
-          parent = frame;
-          parentRect = convertFromParentRect(frameRect, frameIntersect);
-        } else {
-          parent = null;
-          intersectionRect = null;
-        }
-      }
-    } else {
-      // If the element has a non-visible overflow, and it's not the <body>
-      // or <html> element, update the intersection rect.
-      // Note: <body> and <html> cannot be clipped to a rect that's not also
-      // the document rect, so no need to compute a new intersection.
-      var doc = parent.ownerDocument;
-      if (parent != doc.body &&
-          parent != doc.documentElement &&
-          parentComputedStyle.overflow != 'visible') {
-        parentRect = getBoundingClientRect(parent);
-      }
-    }
-
-    // If either of the above conditionals set a new parentRect,
-    // calculate new intersection data.
-    if (parentRect) {
-      intersectionRect = computeRectIntersection(parentRect, intersectionRect);
-    }
-    if (!intersectionRect) break;
-    parent = parent && getParentNode(parent);
-  }
-  return intersectionRect;
-};
-
-
-/**
- * Returns the root rect after being expanded by the rootMargin value.
- * @return {ClientRect} The expanded root rect.
- * @private
- */
-IntersectionObserver.prototype._getRootRect = function() {
-  var rootRect;
-  if (this.root) {
-    rootRect = getBoundingClientRect(this.root);
-  } else {
-    // Use <html>/<body> instead of window since scroll bars affect size.
-    var html = document.documentElement;
-    var body = document.body;
-    rootRect = {
-      top: 0,
-      left: 0,
-      right: html.clientWidth || body.clientWidth,
-      width: html.clientWidth || body.clientWidth,
-      bottom: html.clientHeight || body.clientHeight,
-      height: html.clientHeight || body.clientHeight
-    };
-  }
-  return this._expandRectByRootMargin(rootRect);
-};
-
-
-/**
- * Accepts a rect and expands it by the rootMargin value.
- * @param {DOMRect|ClientRect} rect The rect object to expand.
- * @return {ClientRect} The expanded rect.
- * @private
- */
-IntersectionObserver.prototype._expandRectByRootMargin = function(rect) {
-  var margins = this._rootMarginValues.map(function(margin, i) {
-    return margin.unit == 'px' ? margin.value :
-        margin.value * (i % 2 ? rect.width : rect.height) / 100;
-  });
-  var newRect = {
-    top: rect.top - margins[0],
-    right: rect.right + margins[1],
-    bottom: rect.bottom + margins[2],
-    left: rect.left - margins[3]
-  };
-  newRect.width = newRect.right - newRect.left;
-  newRect.height = newRect.bottom - newRect.top;
-
-  return newRect;
-};
-
-
-/**
- * Accepts an old and new entry and returns true if at least one of the
- * threshold values has been crossed.
- * @param {?IntersectionObserverEntry} oldEntry The previous entry for a
- *    particular target element or null if no previous entry exists.
- * @param {IntersectionObserverEntry} newEntry The current entry for a
- *    particular target element.
- * @return {boolean} Returns true if a any threshold has been crossed.
- * @private
- */
-IntersectionObserver.prototype._hasCrossedThreshold =
-    function(oldEntry, newEntry) {
-
-  // To make comparing easier, an entry that has a ratio of 0
-  // but does not actually intersect is given a value of -1
-  var oldRatio = oldEntry && oldEntry.isIntersecting ?
-      oldEntry.intersectionRatio || 0 : -1;
-  var newRatio = newEntry.isIntersecting ?
-      newEntry.intersectionRatio || 0 : -1;
-
-  // Ignore unchanged ratios
-  if (oldRatio === newRatio) return;
-
-  for (var i = 0; i < this.thresholds.length; i++) {
-    var threshold = this.thresholds[i];
-
-    // Return true if an entry matches a threshold or if the new ratio
-    // and the old ratio are on the opposite sides of a threshold.
-    if (threshold == oldRatio || threshold == newRatio ||
-        threshold < oldRatio !== threshold < newRatio) {
-      return true;
-    }
-  }
-};
-
-
-/**
- * Returns whether or not the root element is an element and is in the DOM.
- * @return {boolean} True if the root element is an element and is in the DOM.
- * @private
- */
-IntersectionObserver.prototype._rootIsInDom = function() {
-  return !this.root || containsDeep(document, this.root);
-};
-
-
-/**
- * Returns whether or not the target element is a child of root.
- * @param {Element} target The target element to check.
- * @return {boolean} True if the target element is a child of root.
- * @private
- */
-IntersectionObserver.prototype._rootContainsTarget = function(target) {
-  return containsDeep(this.root || document, target) &&
-    (!this.root || this.root.ownerDocument == target.ownerDocument);
-};
-
-
-/**
- * Adds the instance to the global IntersectionObserver registry if it isn't
- * already present.
- * @private
- */
-IntersectionObserver.prototype._registerInstance = function() {
-  if (registry.indexOf(this) < 0) {
-    registry.push(this);
-  }
-};
-
-
-/**
- * Removes the instance from the global IntersectionObserver registry.
- * @private
- */
-IntersectionObserver.prototype._unregisterInstance = function() {
-  var index = registry.indexOf(this);
-  if (index != -1) registry.splice(index, 1);
-};
-
-
-/**
- * Returns the result of the performance.now() method or null in browsers
- * that don't support the API.
- * @return {number} The elapsed time since the page was requested.
- */
-function now() {
-  return window.performance && performance.now && performance.now();
-}
-
-
-/**
- * Throttles a function and delays its execution, so it's only called at most
- * once within a given time period.
- * @param {Function} fn The function to throttle.
- * @param {number} timeout The amount of time that must pass before the
- *     function can be called again.
- * @return {Function} The throttled function.
- */
-function throttle(fn, timeout) {
-  var timer = null;
-  return function () {
-    if (!timer) {
-      timer = setTimeout(function() {
-        fn();
-        timer = null;
-      }, timeout);
-    }
-  };
-}
-
-
-/**
- * Adds an event handler to a DOM node ensuring cross-browser compatibility.
- * @param {Node} node The DOM node to add the event handler to.
- * @param {string} event The event name.
- * @param {Function} fn The event handler to add.
- * @param {boolean} opt_useCapture Optionally adds the even to the capture
- *     phase. Note: this only works in modern browsers.
- */
-function addEvent(node, event, fn, opt_useCapture) {
-  if (typeof node.addEventListener == 'function') {
-    node.addEventListener(event, fn, opt_useCapture || false);
-  }
-  else if (typeof node.attachEvent == 'function') {
-    node.attachEvent('on' + event, fn);
-  }
-}
-
-
-/**
- * Removes a previously added event handler from a DOM node.
- * @param {Node} node The DOM node to remove the event handler from.
- * @param {string} event The event name.
- * @param {Function} fn The event handler to remove.
- * @param {boolean} opt_useCapture If the event handler was added with this
- *     flag set to true, it should be set to true here in order to remove it.
- */
-function removeEvent(node, event, fn, opt_useCapture) {
-  if (typeof node.removeEventListener == 'function') {
-    node.removeEventListener(event, fn, opt_useCapture || false);
-  }
-  else if (typeof node.detatchEvent == 'function') {
-    node.detatchEvent('on' + event, fn);
-  }
-}
-
-
-/**
- * Returns the intersection between two rect objects.
- * @param {Object} rect1 The first rect.
- * @param {Object} rect2 The second rect.
- * @return {?Object|?ClientRect} The intersection rect or undefined if no
- *     intersection is found.
- */
-function computeRectIntersection(rect1, rect2) {
-  var top = Math.max(rect1.top, rect2.top);
-  var bottom = Math.min(rect1.bottom, rect2.bottom);
-  var left = Math.max(rect1.left, rect2.left);
-  var right = Math.min(rect1.right, rect2.right);
-  var width = right - left;
-  var height = bottom - top;
-
-  return (width >= 0 && height >= 0) && {
-    top: top,
-    bottom: bottom,
-    left: left,
-    right: right,
-    width: width,
-    height: height
-  } || null;
-}
-
-
-/**
- * Shims the native getBoundingClientRect for compatibility with older IE.
- * @param {Element} el The element whose bounding rect to get.
- * @return {DOMRect|ClientRect} The (possibly shimmed) rect of the element.
- */
-function getBoundingClientRect(el) {
-  var rect;
-
-  try {
-    rect = el.getBoundingClientRect();
-  } catch (err) {
-    // Ignore Windows 7 IE11 "Unspecified error"
-    // https://github.com/w3c/IntersectionObserver/pull/205
-  }
-
-  if (!rect) return getEmptyRect();
-
-  // Older IE
-  if (!(rect.width && rect.height)) {
-    rect = {
-      top: rect.top,
-      right: rect.right,
-      bottom: rect.bottom,
-      left: rect.left,
-      width: rect.right - rect.left,
-      height: rect.bottom - rect.top
-    };
-  }
-  return rect;
-}
-
-
-/**
- * Returns an empty rect object. An empty rect is returned when an element
- * is not in the DOM.
- * @return {ClientRect} The empty rect.
- */
-function getEmptyRect() {
-  return {
-    top: 0,
-    bottom: 0,
-    left: 0,
-    right: 0,
-    width: 0,
-    height: 0
-  };
-}
-
-
-/**
- * Ensure that the result has all of the necessary fields of the DOMRect.
- * Specifically this ensures that `x` and `y` fields are set.
- *
- * @param {?DOMRect|?ClientRect} rect
- * @return {?DOMRect}
- */
-function ensureDOMRect(rect) {
-  // A `DOMRect` object has `x` and `y` fields.
-  if (!rect || 'x' in rect) {
-    return rect;
-  }
-  // A IE's `ClientRect` type does not have `x` and `y`. The same is the case
-  // for internally calculated Rect objects. For the purposes of
-  // `IntersectionObserver`, it's sufficient to simply mirror `left` and `top`
-  // for these fields.
-  return {
-    top: rect.top,
-    y: rect.top,
-    bottom: rect.bottom,
-    left: rect.left,
-    x: rect.left,
-    right: rect.right,
-    width: rect.width,
-    height: rect.height
-  };
-}
-
-
-/**
- * Inverts the intersection and bounding rect from the parent (frame) BCR to
- * the local BCR space.
- * @param {DOMRect|ClientRect} parentBoundingRect The parent's bound client rect.
- * @param {DOMRect|ClientRect} parentIntersectionRect The parent's own intersection rect.
- * @return {ClientRect} The local root bounding rect for the parent's children.
- */
-function convertFromParentRect(parentBoundingRect, parentIntersectionRect) {
-  var top = parentIntersectionRect.top - parentBoundingRect.top;
-  var left = parentIntersectionRect.left - parentBoundingRect.left;
-  return {
-    top: top,
-    left: left,
-    height: parentIntersectionRect.height,
-    width: parentIntersectionRect.width,
-    bottom: top + parentIntersectionRect.height,
-    right: left + parentIntersectionRect.width
-  };
-}
-
-
-/**
- * Checks to see if a parent element contains a child element (including inside
- * shadow DOM).
- * @param {Node} parent The parent element.
- * @param {Node} child The child element.
- * @return {boolean} True if the parent node contains the child node.
- */
-function containsDeep(parent, child) {
-  var node = child;
-  while (node) {
-    if (node == parent) return true;
-
-    node = getParentNode(node);
-  }
-  return false;
-}
-
-
-/**
- * Gets the parent node of an element or its host element if the parent node
- * is a shadow root.
- * @param {Node} node The node whose parent to get.
- * @return {Node|null} The parent node or null if no parent exists.
- */
-function getParentNode(node) {
-  var parent = node.parentNode;
-
-  if (node.nodeType == /* DOCUMENT */ 9 && node != document) {
-    // If this node is a document node, look for the embedding frame.
-    return getFrameElement(node);
-  }
-
-  if (parent && parent.nodeType == 11 && parent.host) {
-    // If the parent is a shadow root, return the host element.
-    return parent.host;
-  }
-
-  if (parent && parent.assignedSlot) {
-    // If the parent is distributed in a <slot>, return the parent of a slot.
-    return parent.assignedSlot.parentNode;
-  }
-
-  return parent;
-}
-
-
-// Exposes the constructors globally.
-window.IntersectionObserver = IntersectionObserver;
-window.IntersectionObserverEntry = IntersectionObserverEntry;
-
-}());
-
-
-/***/ }),
-/* 246 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12781,20 +11710,20 @@ $({ target: 'Array', proto: true, forced: ES3_STRINGS || !STRICT_METHOD }, {
 
 
 /***/ }),
-/* 247 */
+/* 246 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var $ = __webpack_require__(5);
 var isObject = __webpack_require__(11);
-var isArray = __webpack_require__(60);
-var toAbsoluteIndex = __webpack_require__(100);
+var isArray = __webpack_require__(61);
+var toAbsoluteIndex = __webpack_require__(101);
 var toLength = __webpack_require__(18);
 var toIndexedObject = __webpack_require__(22);
-var createProperty = __webpack_require__(67);
-var wellKnownSymbol = __webpack_require__(3);
-var arrayMethodHasSpeciesSupport = __webpack_require__(61);
+var createProperty = __webpack_require__(69);
+var wellKnownSymbol = __webpack_require__(2);
+var arrayMethodHasSpeciesSupport = __webpack_require__(62);
 var arrayMethodUsesToLength = __webpack_require__(32);
 
 var HAS_SPECIES_SUPPORT = arrayMethodHasSpeciesSupport('slice');
@@ -12837,11 +11766,11 @@ $({ target: 'Array', proto: true, forced: !HAS_SPECIES_SUPPORT || !USES_TO_LENGT
 
 
 /***/ }),
-/* 248 */
+/* 247 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var $ = __webpack_require__(5);
-var parseIntImplementation = __webpack_require__(249);
+var parseIntImplementation = __webpack_require__(248);
 
 // `parseInt` method
 // https://tc39.github.io/ecma262/#sec-parseint-string-radix
@@ -12851,12 +11780,12 @@ $({ global: true, forced: parseInt != parseIntImplementation }, {
 
 
 /***/ }),
-/* 249 */
+/* 248 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var global = __webpack_require__(6);
-var trim = __webpack_require__(250).trim;
-var whitespaces = __webpack_require__(115);
+var trim = __webpack_require__(249).trim;
+var whitespaces = __webpack_require__(114);
 
 var $parseInt = global.parseInt;
 var hex = /^[+-]?0[Xx]/;
@@ -12871,11 +11800,11 @@ module.exports = FORCED ? function parseInt(string, radix) {
 
 
 /***/ }),
-/* 250 */
+/* 249 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var requireObjectCoercible = __webpack_require__(17);
-var whitespaces = __webpack_require__(115);
+var whitespaces = __webpack_require__(114);
 
 var whitespace = '[' + whitespaces + ']';
 var ltrim = RegExp('^' + whitespace + whitespace + '*');
@@ -12905,6 +11834,73 @@ module.exports = {
 
 
 /***/ }),
+/* 250 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var $ = __webpack_require__(5);
+var fails = __webpack_require__(3);
+var isArray = __webpack_require__(61);
+var isObject = __webpack_require__(11);
+var toObject = __webpack_require__(13);
+var toLength = __webpack_require__(18);
+var createProperty = __webpack_require__(69);
+var arraySpeciesCreate = __webpack_require__(105);
+var arrayMethodHasSpeciesSupport = __webpack_require__(62);
+var wellKnownSymbol = __webpack_require__(2);
+var V8_VERSION = __webpack_require__(108);
+
+var IS_CONCAT_SPREADABLE = wellKnownSymbol('isConcatSpreadable');
+var MAX_SAFE_INTEGER = 0x1FFFFFFFFFFFFF;
+var MAXIMUM_ALLOWED_INDEX_EXCEEDED = 'Maximum allowed index exceeded';
+
+// We can't use this feature detection in V8 since it causes
+// deoptimization and serious performance degradation
+// https://github.com/zloirock/core-js/issues/679
+var IS_CONCAT_SPREADABLE_SUPPORT = V8_VERSION >= 51 || !fails(function () {
+  var array = [];
+  array[IS_CONCAT_SPREADABLE] = false;
+  return array.concat()[0] !== array;
+});
+
+var SPECIES_SUPPORT = arrayMethodHasSpeciesSupport('concat');
+
+var isConcatSpreadable = function (O) {
+  if (!isObject(O)) return false;
+  var spreadable = O[IS_CONCAT_SPREADABLE];
+  return spreadable !== undefined ? !!spreadable : isArray(O);
+};
+
+var FORCED = !IS_CONCAT_SPREADABLE_SUPPORT || !SPECIES_SUPPORT;
+
+// `Array.prototype.concat` method
+// https://tc39.github.io/ecma262/#sec-array.prototype.concat
+// with adding support of @@isConcatSpreadable and @@species
+$({ target: 'Array', proto: true, forced: FORCED }, {
+  concat: function concat(arg) { // eslint-disable-line no-unused-vars
+    var O = toObject(this);
+    var A = arraySpeciesCreate(O, 0);
+    var n = 0;
+    var i, k, length, len, E;
+    for (i = -1, length = arguments.length; i < length; i++) {
+      E = i === -1 ? O : arguments[i];
+      if (isConcatSpreadable(E)) {
+        len = toLength(E.length);
+        if (n + len > MAX_SAFE_INTEGER) throw TypeError(MAXIMUM_ALLOWED_INDEX_EXCEEDED);
+        for (k = 0; k < len; k++, n++) if (k in E) createProperty(A, n, E[k]);
+      } else {
+        if (n >= MAX_SAFE_INTEGER) throw TypeError(MAXIMUM_ALLOWED_INDEX_EXCEEDED);
+        createProperty(A, n++, E);
+      }
+    }
+    A.length = n;
+    return A;
+  }
+});
+
+
+/***/ }),
 /* 251 */,
 /* 252 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -12912,8 +11908,8 @@ module.exports = {
 "use strict";
 
 var $ = __webpack_require__(5);
-var $includes = __webpack_require__(99).includes;
-var addToUnscopables = __webpack_require__(116);
+var $includes = __webpack_require__(100).includes;
+var addToUnscopables = __webpack_require__(115);
 var arrayMethodUsesToLength = __webpack_require__(32);
 
 var USES_TO_LENGTH = arrayMethodUsesToLength('indexOf', { ACCESSORS: true, 1: 0 });
@@ -12943,7 +11939,7 @@ module.exports = getBuiltIn('document', 'documentElement');
 /* 254 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var fails = __webpack_require__(4);
+var fails = __webpack_require__(3);
 
 module.exports = !fails(function () {
   function F() { /* empty */ }
@@ -12999,7 +11995,7 @@ module.exports = function (it) {
 /* 257 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var TO_STRING_TAG_SUPPORT = __webpack_require__(70);
+var TO_STRING_TAG_SUPPORT = __webpack_require__(72);
 var redefine = __webpack_require__(15);
 var toString = __webpack_require__(258);
 
@@ -13016,8 +12012,8 @@ if (!TO_STRING_TAG_SUPPORT) {
 
 "use strict";
 
-var TO_STRING_TAG_SUPPORT = __webpack_require__(70);
-var classof = __webpack_require__(71);
+var TO_STRING_TAG_SUPPORT = __webpack_require__(72);
+var classof = __webpack_require__(73);
 
 // `Object.prototype.toString` method implementation
 // https://tc39.github.io/ecma262/#sec-object.prototype.tostring
@@ -13034,8 +12030,8 @@ module.exports = TO_STRING_TAG_SUPPORT ? {}.toString : function toString() {
 
 var redefine = __webpack_require__(15);
 var anObject = __webpack_require__(8);
-var fails = __webpack_require__(4);
-var flags = __webpack_require__(108);
+var fails = __webpack_require__(3);
+var flags = __webpack_require__(109);
 
 var TO_STRING = 'toString';
 var RegExpPrototype = RegExp.prototype;
@@ -13098,7 +12094,7 @@ module.exports = function (it) {
 
 var isObject = __webpack_require__(11);
 var classof = __webpack_require__(30);
-var wellKnownSymbol = __webpack_require__(3);
+var wellKnownSymbol = __webpack_require__(2);
 
 var MATCH = wellKnownSymbol('match');
 
@@ -13114,7 +12110,7 @@ module.exports = function (it) {
 /* 263 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var wellKnownSymbol = __webpack_require__(3);
+var wellKnownSymbol = __webpack_require__(2);
 
 var MATCH = wellKnownSymbol('match');
 
@@ -13137,11 +12133,11 @@ module.exports = function (METHOD_NAME) {
 
 "use strict";
 
-var fixRegExpWellKnownSymbolLogic = __webpack_require__(110);
+var fixRegExpWellKnownSymbolLogic = __webpack_require__(111);
 var anObject = __webpack_require__(8);
 var requireObjectCoercible = __webpack_require__(17);
 var sameValue = __webpack_require__(265);
-var regExpExec = __webpack_require__(111);
+var regExpExec = __webpack_require__(112);
 
 // @@search logic
 fixRegExpWellKnownSymbolLogic('search', 1, function (SEARCH, nativeSearch, maybeCallNative) {
@@ -13190,9 +12186,9 @@ module.exports = Object.is || function is(x, y) {
 
 var global = __webpack_require__(6);
 var DOMIterables = __webpack_require__(113);
-var ArrayIteratorMethods = __webpack_require__(69);
+var ArrayIteratorMethods = __webpack_require__(71);
 var createNonEnumerableProperty = __webpack_require__(12);
-var wellKnownSymbol = __webpack_require__(3);
+var wellKnownSymbol = __webpack_require__(2);
 
 var ITERATOR = wellKnownSymbol('iterator');
 var TO_STRING_TAG = wellKnownSymbol('toStringTag');
@@ -13230,18 +12226,18 @@ for (var COLLECTION_NAME in DOMIterables) {
 "use strict";
 
 // TODO: in core-js@4, move /modules/ dependencies to public entries for better optimization by tools like `preset-env`
-__webpack_require__(122);
+__webpack_require__(121);
 var $ = __webpack_require__(5);
 var DESCRIPTORS = __webpack_require__(14);
-var USE_NATIVE_URL = __webpack_require__(123);
+var USE_NATIVE_URL = __webpack_require__(122);
 var global = __webpack_require__(6);
-var defineProperties = __webpack_require__(117);
+var defineProperties = __webpack_require__(116);
 var redefine = __webpack_require__(15);
-var anInstance = __webpack_require__(124);
+var anInstance = __webpack_require__(123);
 var has = __webpack_require__(7);
 var assign = __webpack_require__(268);
 var arrayFrom = __webpack_require__(269);
-var codeAt = __webpack_require__(65).codeAt;
+var codeAt = __webpack_require__(66).codeAt;
 var toASCII = __webpack_require__(272);
 var setToStringTag = __webpack_require__(42);
 var URLSearchParamsModule = __webpack_require__(273);
@@ -14244,10 +13240,10 @@ $({ global: true, forced: !USE_NATIVE_URL, sham: !DESCRIPTORS }, {
 "use strict";
 
 var DESCRIPTORS = __webpack_require__(14);
-var fails = __webpack_require__(4);
-var objectKeys = __webpack_require__(62);
-var getOwnPropertySymbolsModule = __webpack_require__(101);
-var propertyIsEnumerableModule = __webpack_require__(91);
+var fails = __webpack_require__(3);
+var objectKeys = __webpack_require__(63);
+var getOwnPropertySymbolsModule = __webpack_require__(102);
+var propertyIsEnumerableModule = __webpack_require__(92);
 var toObject = __webpack_require__(13);
 var IndexedObject = __webpack_require__(29);
 
@@ -14302,13 +13298,13 @@ module.exports = !nativeAssign || fails(function () {
 
 "use strict";
 
-var bind = __webpack_require__(58);
+var bind = __webpack_require__(59);
 var toObject = __webpack_require__(13);
 var callWithSafeIterationClosing = __webpack_require__(270);
 var isArrayIteratorMethod = __webpack_require__(271);
 var toLength = __webpack_require__(18);
-var createProperty = __webpack_require__(67);
-var getIteratorMethod = __webpack_require__(72);
+var createProperty = __webpack_require__(69);
+var getIteratorMethod = __webpack_require__(74);
 
 // `Array.from` method implementation
 // https://tc39.github.io/ecma262/#sec-array.from
@@ -14367,7 +13363,7 @@ module.exports = function (iterator, fn, value, ENTRIES) {
 /* 271 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var wellKnownSymbol = __webpack_require__(3);
+var wellKnownSymbol = __webpack_require__(2);
 var Iterators = __webpack_require__(34);
 
 var ITERATOR = wellKnownSymbol('iterator');
@@ -14561,26 +13557,26 @@ module.exports = function (input) {
 "use strict";
 
 // TODO: in core-js@4, move /modules/ dependencies to public entries for better optimization by tools like `preset-env`
-__webpack_require__(69);
+__webpack_require__(71);
 var $ = __webpack_require__(5);
 var getBuiltIn = __webpack_require__(39);
-var USE_NATIVE_URL = __webpack_require__(123);
+var USE_NATIVE_URL = __webpack_require__(122);
 var redefine = __webpack_require__(15);
 var redefineAll = __webpack_require__(274);
 var setToStringTag = __webpack_require__(42);
-var createIteratorConstructor = __webpack_require__(119);
+var createIteratorConstructor = __webpack_require__(118);
 var InternalStateModule = __webpack_require__(31);
-var anInstance = __webpack_require__(124);
+var anInstance = __webpack_require__(123);
 var hasOwn = __webpack_require__(7);
-var bind = __webpack_require__(58);
-var classof = __webpack_require__(71);
+var bind = __webpack_require__(59);
+var classof = __webpack_require__(73);
 var anObject = __webpack_require__(8);
 var isObject = __webpack_require__(11);
-var create = __webpack_require__(68);
+var create = __webpack_require__(70);
 var createPropertyDescriptor = __webpack_require__(28);
 var getIterator = __webpack_require__(275);
-var getIteratorMethod = __webpack_require__(72);
-var wellKnownSymbol = __webpack_require__(3);
+var getIteratorMethod = __webpack_require__(74);
+var wellKnownSymbol = __webpack_require__(2);
 
 var $fetch = getBuiltIn('fetch');
 var Headers = getBuiltIn('Headers');
@@ -14925,7 +13921,7 @@ module.exports = function (target, src, options) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var anObject = __webpack_require__(8);
-var getIteratorMethod = __webpack_require__(72);
+var getIteratorMethod = __webpack_require__(74);
 
 module.exports = function (it) {
   var iteratorMethod = getIteratorMethod(it);
@@ -14933,6 +13929,999 @@ module.exports = function (it) {
     throw TypeError(String(it) + ' is not iterable');
   } return anObject(iteratorMethod.call(it));
 };
+
+
+/***/ }),
+/* 276 */,
+/* 277 */
+/***/ (function(module, exports) {
+
+/**
+ * Copyright 2016 Google Inc. All Rights Reserved.
+ *
+ * Licensed under the W3C SOFTWARE AND DOCUMENT NOTICE AND LICENSE.
+ *
+ *  https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
+ *
+ */
+(function() {
+'use strict';
+
+// Exit early if we're not running in a browser.
+if (typeof window !== 'object') {
+  return;
+}
+
+// Exit early if all IntersectionObserver and IntersectionObserverEntry
+// features are natively supported.
+if ('IntersectionObserver' in window &&
+    'IntersectionObserverEntry' in window &&
+    'intersectionRatio' in window.IntersectionObserverEntry.prototype) {
+
+  // Minimal polyfill for Edge 15's lack of `isIntersecting`
+  // See: https://github.com/w3c/IntersectionObserver/issues/211
+  if (!('isIntersecting' in window.IntersectionObserverEntry.prototype)) {
+    Object.defineProperty(window.IntersectionObserverEntry.prototype,
+      'isIntersecting', {
+      get: function () {
+        return this.intersectionRatio > 0;
+      }
+    });
+  }
+  return;
+}
+
+/**
+ * Returns the embedding frame element, if any.
+ * @param {!Document} doc
+ * @return {!Element}
+ */
+function getFrameElement(doc) {
+  try {
+    return doc.defaultView && doc.defaultView.frameElement || null;
+  } catch (e) {
+    // Ignore the error.
+    return null;
+  }
+}
+
+/**
+ * A local reference to the root document.
+ */
+var document = (function(startDoc) {
+  var doc = startDoc;
+  var frame = getFrameElement(doc);
+  while (frame) {
+    doc = frame.ownerDocument;
+    frame = getFrameElement(doc);
+  }
+  return doc;
+})(window.document);
+
+/**
+ * An IntersectionObserver registry. This registry exists to hold a strong
+ * reference to IntersectionObserver instances currently observing a target
+ * element. Without this registry, instances without another reference may be
+ * garbage collected.
+ */
+var registry = [];
+
+/**
+ * The signal updater for cross-origin intersection. When not null, it means
+ * that the polyfill is configured to work in a cross-origin mode.
+ * @type {function(DOMRect|ClientRect, DOMRect|ClientRect)}
+ */
+var crossOriginUpdater = null;
+
+/**
+ * The current cross-origin intersection. Only used in the cross-origin mode.
+ * @type {DOMRect|ClientRect}
+ */
+var crossOriginRect = null;
+
+
+/**
+ * Creates the global IntersectionObserverEntry constructor.
+ * https://w3c.github.io/IntersectionObserver/#intersection-observer-entry
+ * @param {Object} entry A dictionary of instance properties.
+ * @constructor
+ */
+function IntersectionObserverEntry(entry) {
+  this.time = entry.time;
+  this.target = entry.target;
+  this.rootBounds = ensureDOMRect(entry.rootBounds);
+  this.boundingClientRect = ensureDOMRect(entry.boundingClientRect);
+  this.intersectionRect = ensureDOMRect(entry.intersectionRect || getEmptyRect());
+  this.isIntersecting = !!entry.intersectionRect;
+
+  // Calculates the intersection ratio.
+  var targetRect = this.boundingClientRect;
+  var targetArea = targetRect.width * targetRect.height;
+  var intersectionRect = this.intersectionRect;
+  var intersectionArea = intersectionRect.width * intersectionRect.height;
+
+  // Sets intersection ratio.
+  if (targetArea) {
+    // Round the intersection ratio to avoid floating point math issues:
+    // https://github.com/w3c/IntersectionObserver/issues/324
+    this.intersectionRatio = Number((intersectionArea / targetArea).toFixed(4));
+  } else {
+    // If area is zero and is intersecting, sets to 1, otherwise to 0
+    this.intersectionRatio = this.isIntersecting ? 1 : 0;
+  }
+}
+
+
+/**
+ * Creates the global IntersectionObserver constructor.
+ * https://w3c.github.io/IntersectionObserver/#intersection-observer-interface
+ * @param {Function} callback The function to be invoked after intersection
+ *     changes have queued. The function is not invoked if the queue has
+ *     been emptied by calling the `takeRecords` method.
+ * @param {Object=} opt_options Optional configuration options.
+ * @constructor
+ */
+function IntersectionObserver(callback, opt_options) {
+
+  var options = opt_options || {};
+
+  if (typeof callback != 'function') {
+    throw new Error('callback must be a function');
+  }
+
+  if (options.root && options.root.nodeType != 1) {
+    throw new Error('root must be an Element');
+  }
+
+  // Binds and throttles `this._checkForIntersections`.
+  this._checkForIntersections = throttle(
+      this._checkForIntersections.bind(this), this.THROTTLE_TIMEOUT);
+
+  // Private properties.
+  this._callback = callback;
+  this._observationTargets = [];
+  this._queuedEntries = [];
+  this._rootMarginValues = this._parseRootMargin(options.rootMargin);
+
+  // Public properties.
+  this.thresholds = this._initThresholds(options.threshold);
+  this.root = options.root || null;
+  this.rootMargin = this._rootMarginValues.map(function(margin) {
+    return margin.value + margin.unit;
+  }).join(' ');
+
+  /** @private @const {!Array<!Document>} */
+  this._monitoringDocuments = [];
+  /** @private @const {!Array<function()>} */
+  this._monitoringUnsubscribes = [];
+}
+
+
+/**
+ * The minimum interval within which the document will be checked for
+ * intersection changes.
+ */
+IntersectionObserver.prototype.THROTTLE_TIMEOUT = 100;
+
+
+/**
+ * The frequency in which the polyfill polls for intersection changes.
+ * this can be updated on a per instance basis and must be set prior to
+ * calling `observe` on the first target.
+ */
+IntersectionObserver.prototype.POLL_INTERVAL = null;
+
+/**
+ * Use a mutation observer on the root element
+ * to detect intersection changes.
+ */
+IntersectionObserver.prototype.USE_MUTATION_OBSERVER = true;
+
+
+/**
+ * Sets up the polyfill in the cross-origin mode. The result is the
+ * updater function that accepts two arguments: `boundingClientRect` and
+ * `intersectionRect` - just as these fields would be available to the
+ * parent via `IntersectionObserverEntry`. This function should be called
+ * each time the iframe receives intersection information from the parent
+ * window, e.g. via messaging.
+ * @return {function(DOMRect|ClientRect, DOMRect|ClientRect)}
+ */
+IntersectionObserver._setupCrossOriginUpdater = function() {
+  if (!crossOriginUpdater) {
+    /**
+     * @param {DOMRect|ClientRect} boundingClientRect
+     * @param {DOMRect|ClientRect} intersectionRect
+     */
+    crossOriginUpdater = function(boundingClientRect, intersectionRect) {
+      if (!boundingClientRect || !intersectionRect) {
+        crossOriginRect = getEmptyRect();
+      } else {
+        crossOriginRect = convertFromParentRect(boundingClientRect, intersectionRect);
+      }
+      registry.forEach(function(observer) {
+        observer._checkForIntersections();
+      });
+    };
+  }
+  return crossOriginUpdater;
+};
+
+
+/**
+ * Resets the cross-origin mode.
+ */
+IntersectionObserver._resetCrossOriginUpdater = function() {
+  crossOriginUpdater = null;
+  crossOriginRect = null;
+};
+
+
+/**
+ * Starts observing a target element for intersection changes based on
+ * the thresholds values.
+ * @param {Element} target The DOM element to observe.
+ */
+IntersectionObserver.prototype.observe = function(target) {
+  var isTargetAlreadyObserved = this._observationTargets.some(function(item) {
+    return item.element == target;
+  });
+
+  if (isTargetAlreadyObserved) {
+    return;
+  }
+
+  if (!(target && target.nodeType == 1)) {
+    throw new Error('target must be an Element');
+  }
+
+  this._registerInstance();
+  this._observationTargets.push({element: target, entry: null});
+  this._monitorIntersections(target.ownerDocument);
+  this._checkForIntersections();
+};
+
+
+/**
+ * Stops observing a target element for intersection changes.
+ * @param {Element} target The DOM element to observe.
+ */
+IntersectionObserver.prototype.unobserve = function(target) {
+  this._observationTargets =
+      this._observationTargets.filter(function(item) {
+        return item.element != target;
+      });
+  this._unmonitorIntersections(target.ownerDocument);
+  if (this._observationTargets.length == 0) {
+    this._unregisterInstance();
+  }
+};
+
+
+/**
+ * Stops observing all target elements for intersection changes.
+ */
+IntersectionObserver.prototype.disconnect = function() {
+  this._observationTargets = [];
+  this._unmonitorAllIntersections();
+  this._unregisterInstance();
+};
+
+
+/**
+ * Returns any queue entries that have not yet been reported to the
+ * callback and clears the queue. This can be used in conjunction with the
+ * callback to obtain the absolute most up-to-date intersection information.
+ * @return {Array} The currently queued entries.
+ */
+IntersectionObserver.prototype.takeRecords = function() {
+  var records = this._queuedEntries.slice();
+  this._queuedEntries = [];
+  return records;
+};
+
+
+/**
+ * Accepts the threshold value from the user configuration object and
+ * returns a sorted array of unique threshold values. If a value is not
+ * between 0 and 1 and error is thrown.
+ * @private
+ * @param {Array|number=} opt_threshold An optional threshold value or
+ *     a list of threshold values, defaulting to [0].
+ * @return {Array} A sorted list of unique and valid threshold values.
+ */
+IntersectionObserver.prototype._initThresholds = function(opt_threshold) {
+  var threshold = opt_threshold || [0];
+  if (!Array.isArray(threshold)) threshold = [threshold];
+
+  return threshold.sort().filter(function(t, i, a) {
+    if (typeof t != 'number' || isNaN(t) || t < 0 || t > 1) {
+      throw new Error('threshold must be a number between 0 and 1 inclusively');
+    }
+    return t !== a[i - 1];
+  });
+};
+
+
+/**
+ * Accepts the rootMargin value from the user configuration object
+ * and returns an array of the four margin values as an object containing
+ * the value and unit properties. If any of the values are not properly
+ * formatted or use a unit other than px or %, and error is thrown.
+ * @private
+ * @param {string=} opt_rootMargin An optional rootMargin value,
+ *     defaulting to '0px'.
+ * @return {Array<Object>} An array of margin objects with the keys
+ *     value and unit.
+ */
+IntersectionObserver.prototype._parseRootMargin = function(opt_rootMargin) {
+  var marginString = opt_rootMargin || '0px';
+  var margins = marginString.split(/\s+/).map(function(margin) {
+    var parts = /^(-?\d*\.?\d+)(px|%)$/.exec(margin);
+    if (!parts) {
+      throw new Error('rootMargin must be specified in pixels or percent');
+    }
+    return {value: parseFloat(parts[1]), unit: parts[2]};
+  });
+
+  // Handles shorthand.
+  margins[1] = margins[1] || margins[0];
+  margins[2] = margins[2] || margins[0];
+  margins[3] = margins[3] || margins[1];
+
+  return margins;
+};
+
+
+/**
+ * Starts polling for intersection changes if the polling is not already
+ * happening, and if the page's visibility state is visible.
+ * @param {!Document} doc
+ * @private
+ */
+IntersectionObserver.prototype._monitorIntersections = function(doc) {
+  var win = doc.defaultView;
+  if (!win) {
+    // Already destroyed.
+    return;
+  }
+  if (this._monitoringDocuments.indexOf(doc) != -1) {
+    // Already monitoring.
+    return;
+  }
+
+  // Private state for monitoring.
+  var callback = this._checkForIntersections;
+  var monitoringInterval = null;
+  var domObserver = null;
+
+  // If a poll interval is set, use polling instead of listening to
+  // resize and scroll events or DOM mutations.
+  if (this.POLL_INTERVAL) {
+    monitoringInterval = win.setInterval(callback, this.POLL_INTERVAL);
+  } else {
+    addEvent(win, 'resize', callback, true);
+    addEvent(doc, 'scroll', callback, true);
+    if (this.USE_MUTATION_OBSERVER && 'MutationObserver' in win) {
+      domObserver = new win.MutationObserver(callback);
+      domObserver.observe(doc, {
+        attributes: true,
+        childList: true,
+        characterData: true,
+        subtree: true
+      });
+    }
+  }
+
+  this._monitoringDocuments.push(doc);
+  this._monitoringUnsubscribes.push(function() {
+    // Get the window object again. When a friendly iframe is destroyed, it
+    // will be null.
+    var win = doc.defaultView;
+
+    if (win) {
+      if (monitoringInterval) {
+        win.clearInterval(monitoringInterval);
+      }
+      removeEvent(win, 'resize', callback, true);
+    }
+
+    removeEvent(doc, 'scroll', callback, true);
+    if (domObserver) {
+      domObserver.disconnect();
+    }
+  });
+
+  // Also monitor the parent.
+  if (doc != (this.root && this.root.ownerDocument || document)) {
+    var frame = getFrameElement(doc);
+    if (frame) {
+      this._monitorIntersections(frame.ownerDocument);
+    }
+  }
+};
+
+
+/**
+ * Stops polling for intersection changes.
+ * @param {!Document} doc
+ * @private
+ */
+IntersectionObserver.prototype._unmonitorIntersections = function(doc) {
+  var index = this._monitoringDocuments.indexOf(doc);
+  if (index == -1) {
+    return;
+  }
+
+  var rootDoc = (this.root && this.root.ownerDocument || document);
+
+  // Check if any dependent targets are still remaining.
+  var hasDependentTargets =
+      this._observationTargets.some(function(item) {
+        var itemDoc = item.element.ownerDocument;
+        // Target is in this context.
+        if (itemDoc == doc) {
+          return true;
+        }
+        // Target is nested in this context.
+        while (itemDoc && itemDoc != rootDoc) {
+          var frame = getFrameElement(itemDoc);
+          itemDoc = frame && frame.ownerDocument;
+          if (itemDoc == doc) {
+            return true;
+          }
+        }
+        return false;
+      });
+  if (hasDependentTargets) {
+    return;
+  }
+
+  // Unsubscribe.
+  var unsubscribe = this._monitoringUnsubscribes[index];
+  this._monitoringDocuments.splice(index, 1);
+  this._monitoringUnsubscribes.splice(index, 1);
+  unsubscribe();
+
+  // Also unmonitor the parent.
+  if (doc != rootDoc) {
+    var frame = getFrameElement(doc);
+    if (frame) {
+      this._unmonitorIntersections(frame.ownerDocument);
+    }
+  }
+};
+
+
+/**
+ * Stops polling for intersection changes.
+ * @param {!Document} doc
+ * @private
+ */
+IntersectionObserver.prototype._unmonitorAllIntersections = function() {
+  var unsubscribes = this._monitoringUnsubscribes.slice(0);
+  this._monitoringDocuments.length = 0;
+  this._monitoringUnsubscribes.length = 0;
+  for (var i = 0; i < unsubscribes.length; i++) {
+    unsubscribes[i]();
+  }
+};
+
+
+/**
+ * Scans each observation target for intersection changes and adds them
+ * to the internal entries queue. If new entries are found, it
+ * schedules the callback to be invoked.
+ * @private
+ */
+IntersectionObserver.prototype._checkForIntersections = function() {
+  if (!this.root && crossOriginUpdater && !crossOriginRect) {
+    // Cross origin monitoring, but no initial data available yet.
+    return;
+  }
+
+  var rootIsInDom = this._rootIsInDom();
+  var rootRect = rootIsInDom ? this._getRootRect() : getEmptyRect();
+
+  this._observationTargets.forEach(function(item) {
+    var target = item.element;
+    var targetRect = getBoundingClientRect(target);
+    var rootContainsTarget = this._rootContainsTarget(target);
+    var oldEntry = item.entry;
+    var intersectionRect = rootIsInDom && rootContainsTarget &&
+        this._computeTargetAndRootIntersection(target, targetRect, rootRect);
+
+    var newEntry = item.entry = new IntersectionObserverEntry({
+      time: now(),
+      target: target,
+      boundingClientRect: targetRect,
+      rootBounds: crossOriginUpdater && !this.root ? null : rootRect,
+      intersectionRect: intersectionRect
+    });
+
+    if (!oldEntry) {
+      this._queuedEntries.push(newEntry);
+    } else if (rootIsInDom && rootContainsTarget) {
+      // If the new entry intersection ratio has crossed any of the
+      // thresholds, add a new entry.
+      if (this._hasCrossedThreshold(oldEntry, newEntry)) {
+        this._queuedEntries.push(newEntry);
+      }
+    } else {
+      // If the root is not in the DOM or target is not contained within
+      // root but the previous entry for this target had an intersection,
+      // add a new record indicating removal.
+      if (oldEntry && oldEntry.isIntersecting) {
+        this._queuedEntries.push(newEntry);
+      }
+    }
+  }, this);
+
+  if (this._queuedEntries.length) {
+    this._callback(this.takeRecords(), this);
+  }
+};
+
+
+/**
+ * Accepts a target and root rect computes the intersection between then
+ * following the algorithm in the spec.
+ * TODO(philipwalton): at this time clip-path is not considered.
+ * https://w3c.github.io/IntersectionObserver/#calculate-intersection-rect-algo
+ * @param {Element} target The target DOM element
+ * @param {Object} targetRect The bounding rect of the target.
+ * @param {Object} rootRect The bounding rect of the root after being
+ *     expanded by the rootMargin value.
+ * @return {?Object} The final intersection rect object or undefined if no
+ *     intersection is found.
+ * @private
+ */
+IntersectionObserver.prototype._computeTargetAndRootIntersection =
+    function(target, targetRect, rootRect) {
+  // If the element isn't displayed, an intersection can't happen.
+  if (window.getComputedStyle(target).display == 'none') return;
+
+  var intersectionRect = targetRect;
+  var parent = getParentNode(target);
+  var atRoot = false;
+
+  while (!atRoot && parent) {
+    var parentRect = null;
+    var parentComputedStyle = parent.nodeType == 1 ?
+        window.getComputedStyle(parent) : {};
+
+    // If the parent isn't displayed, an intersection can't happen.
+    if (parentComputedStyle.display == 'none') return null;
+
+    if (parent == this.root || parent.nodeType == /* DOCUMENT */ 9) {
+      atRoot = true;
+      if (parent == this.root || parent == document) {
+        if (crossOriginUpdater && !this.root) {
+          if (!crossOriginRect ||
+              crossOriginRect.width == 0 && crossOriginRect.height == 0) {
+            // A 0-size cross-origin intersection means no-intersection.
+            parent = null;
+            parentRect = null;
+            intersectionRect = null;
+          } else {
+            parentRect = crossOriginRect;
+          }
+        } else {
+          parentRect = rootRect;
+        }
+      } else {
+        // Check if there's a frame that can be navigated to.
+        var frame = getParentNode(parent);
+        var frameRect = frame && getBoundingClientRect(frame);
+        var frameIntersect =
+            frame &&
+            this._computeTargetAndRootIntersection(frame, frameRect, rootRect);
+        if (frameRect && frameIntersect) {
+          parent = frame;
+          parentRect = convertFromParentRect(frameRect, frameIntersect);
+        } else {
+          parent = null;
+          intersectionRect = null;
+        }
+      }
+    } else {
+      // If the element has a non-visible overflow, and it's not the <body>
+      // or <html> element, update the intersection rect.
+      // Note: <body> and <html> cannot be clipped to a rect that's not also
+      // the document rect, so no need to compute a new intersection.
+      var doc = parent.ownerDocument;
+      if (parent != doc.body &&
+          parent != doc.documentElement &&
+          parentComputedStyle.overflow != 'visible') {
+        parentRect = getBoundingClientRect(parent);
+      }
+    }
+
+    // If either of the above conditionals set a new parentRect,
+    // calculate new intersection data.
+    if (parentRect) {
+      intersectionRect = computeRectIntersection(parentRect, intersectionRect);
+    }
+    if (!intersectionRect) break;
+    parent = parent && getParentNode(parent);
+  }
+  return intersectionRect;
+};
+
+
+/**
+ * Returns the root rect after being expanded by the rootMargin value.
+ * @return {ClientRect} The expanded root rect.
+ * @private
+ */
+IntersectionObserver.prototype._getRootRect = function() {
+  var rootRect;
+  if (this.root) {
+    rootRect = getBoundingClientRect(this.root);
+  } else {
+    // Use <html>/<body> instead of window since scroll bars affect size.
+    var html = document.documentElement;
+    var body = document.body;
+    rootRect = {
+      top: 0,
+      left: 0,
+      right: html.clientWidth || body.clientWidth,
+      width: html.clientWidth || body.clientWidth,
+      bottom: html.clientHeight || body.clientHeight,
+      height: html.clientHeight || body.clientHeight
+    };
+  }
+  return this._expandRectByRootMargin(rootRect);
+};
+
+
+/**
+ * Accepts a rect and expands it by the rootMargin value.
+ * @param {DOMRect|ClientRect} rect The rect object to expand.
+ * @return {ClientRect} The expanded rect.
+ * @private
+ */
+IntersectionObserver.prototype._expandRectByRootMargin = function(rect) {
+  var margins = this._rootMarginValues.map(function(margin, i) {
+    return margin.unit == 'px' ? margin.value :
+        margin.value * (i % 2 ? rect.width : rect.height) / 100;
+  });
+  var newRect = {
+    top: rect.top - margins[0],
+    right: rect.right + margins[1],
+    bottom: rect.bottom + margins[2],
+    left: rect.left - margins[3]
+  };
+  newRect.width = newRect.right - newRect.left;
+  newRect.height = newRect.bottom - newRect.top;
+
+  return newRect;
+};
+
+
+/**
+ * Accepts an old and new entry and returns true if at least one of the
+ * threshold values has been crossed.
+ * @param {?IntersectionObserverEntry} oldEntry The previous entry for a
+ *    particular target element or null if no previous entry exists.
+ * @param {IntersectionObserverEntry} newEntry The current entry for a
+ *    particular target element.
+ * @return {boolean} Returns true if a any threshold has been crossed.
+ * @private
+ */
+IntersectionObserver.prototype._hasCrossedThreshold =
+    function(oldEntry, newEntry) {
+
+  // To make comparing easier, an entry that has a ratio of 0
+  // but does not actually intersect is given a value of -1
+  var oldRatio = oldEntry && oldEntry.isIntersecting ?
+      oldEntry.intersectionRatio || 0 : -1;
+  var newRatio = newEntry.isIntersecting ?
+      newEntry.intersectionRatio || 0 : -1;
+
+  // Ignore unchanged ratios
+  if (oldRatio === newRatio) return;
+
+  for (var i = 0; i < this.thresholds.length; i++) {
+    var threshold = this.thresholds[i];
+
+    // Return true if an entry matches a threshold or if the new ratio
+    // and the old ratio are on the opposite sides of a threshold.
+    if (threshold == oldRatio || threshold == newRatio ||
+        threshold < oldRatio !== threshold < newRatio) {
+      return true;
+    }
+  }
+};
+
+
+/**
+ * Returns whether or not the root element is an element and is in the DOM.
+ * @return {boolean} True if the root element is an element and is in the DOM.
+ * @private
+ */
+IntersectionObserver.prototype._rootIsInDom = function() {
+  return !this.root || containsDeep(document, this.root);
+};
+
+
+/**
+ * Returns whether or not the target element is a child of root.
+ * @param {Element} target The target element to check.
+ * @return {boolean} True if the target element is a child of root.
+ * @private
+ */
+IntersectionObserver.prototype._rootContainsTarget = function(target) {
+  return containsDeep(this.root || document, target) &&
+    (!this.root || this.root.ownerDocument == target.ownerDocument);
+};
+
+
+/**
+ * Adds the instance to the global IntersectionObserver registry if it isn't
+ * already present.
+ * @private
+ */
+IntersectionObserver.prototype._registerInstance = function() {
+  if (registry.indexOf(this) < 0) {
+    registry.push(this);
+  }
+};
+
+
+/**
+ * Removes the instance from the global IntersectionObserver registry.
+ * @private
+ */
+IntersectionObserver.prototype._unregisterInstance = function() {
+  var index = registry.indexOf(this);
+  if (index != -1) registry.splice(index, 1);
+};
+
+
+/**
+ * Returns the result of the performance.now() method or null in browsers
+ * that don't support the API.
+ * @return {number} The elapsed time since the page was requested.
+ */
+function now() {
+  return window.performance && performance.now && performance.now();
+}
+
+
+/**
+ * Throttles a function and delays its execution, so it's only called at most
+ * once within a given time period.
+ * @param {Function} fn The function to throttle.
+ * @param {number} timeout The amount of time that must pass before the
+ *     function can be called again.
+ * @return {Function} The throttled function.
+ */
+function throttle(fn, timeout) {
+  var timer = null;
+  return function () {
+    if (!timer) {
+      timer = setTimeout(function() {
+        fn();
+        timer = null;
+      }, timeout);
+    }
+  };
+}
+
+
+/**
+ * Adds an event handler to a DOM node ensuring cross-browser compatibility.
+ * @param {Node} node The DOM node to add the event handler to.
+ * @param {string} event The event name.
+ * @param {Function} fn The event handler to add.
+ * @param {boolean} opt_useCapture Optionally adds the even to the capture
+ *     phase. Note: this only works in modern browsers.
+ */
+function addEvent(node, event, fn, opt_useCapture) {
+  if (typeof node.addEventListener == 'function') {
+    node.addEventListener(event, fn, opt_useCapture || false);
+  }
+  else if (typeof node.attachEvent == 'function') {
+    node.attachEvent('on' + event, fn);
+  }
+}
+
+
+/**
+ * Removes a previously added event handler from a DOM node.
+ * @param {Node} node The DOM node to remove the event handler from.
+ * @param {string} event The event name.
+ * @param {Function} fn The event handler to remove.
+ * @param {boolean} opt_useCapture If the event handler was added with this
+ *     flag set to true, it should be set to true here in order to remove it.
+ */
+function removeEvent(node, event, fn, opt_useCapture) {
+  if (typeof node.removeEventListener == 'function') {
+    node.removeEventListener(event, fn, opt_useCapture || false);
+  }
+  else if (typeof node.detatchEvent == 'function') {
+    node.detatchEvent('on' + event, fn);
+  }
+}
+
+
+/**
+ * Returns the intersection between two rect objects.
+ * @param {Object} rect1 The first rect.
+ * @param {Object} rect2 The second rect.
+ * @return {?Object|?ClientRect} The intersection rect or undefined if no
+ *     intersection is found.
+ */
+function computeRectIntersection(rect1, rect2) {
+  var top = Math.max(rect1.top, rect2.top);
+  var bottom = Math.min(rect1.bottom, rect2.bottom);
+  var left = Math.max(rect1.left, rect2.left);
+  var right = Math.min(rect1.right, rect2.right);
+  var width = right - left;
+  var height = bottom - top;
+
+  return (width >= 0 && height >= 0) && {
+    top: top,
+    bottom: bottom,
+    left: left,
+    right: right,
+    width: width,
+    height: height
+  } || null;
+}
+
+
+/**
+ * Shims the native getBoundingClientRect for compatibility with older IE.
+ * @param {Element} el The element whose bounding rect to get.
+ * @return {DOMRect|ClientRect} The (possibly shimmed) rect of the element.
+ */
+function getBoundingClientRect(el) {
+  var rect;
+
+  try {
+    rect = el.getBoundingClientRect();
+  } catch (err) {
+    // Ignore Windows 7 IE11 "Unspecified error"
+    // https://github.com/w3c/IntersectionObserver/pull/205
+  }
+
+  if (!rect) return getEmptyRect();
+
+  // Older IE
+  if (!(rect.width && rect.height)) {
+    rect = {
+      top: rect.top,
+      right: rect.right,
+      bottom: rect.bottom,
+      left: rect.left,
+      width: rect.right - rect.left,
+      height: rect.bottom - rect.top
+    };
+  }
+  return rect;
+}
+
+
+/**
+ * Returns an empty rect object. An empty rect is returned when an element
+ * is not in the DOM.
+ * @return {ClientRect} The empty rect.
+ */
+function getEmptyRect() {
+  return {
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
+    width: 0,
+    height: 0
+  };
+}
+
+
+/**
+ * Ensure that the result has all of the necessary fields of the DOMRect.
+ * Specifically this ensures that `x` and `y` fields are set.
+ *
+ * @param {?DOMRect|?ClientRect} rect
+ * @return {?DOMRect}
+ */
+function ensureDOMRect(rect) {
+  // A `DOMRect` object has `x` and `y` fields.
+  if (!rect || 'x' in rect) {
+    return rect;
+  }
+  // A IE's `ClientRect` type does not have `x` and `y`. The same is the case
+  // for internally calculated Rect objects. For the purposes of
+  // `IntersectionObserver`, it's sufficient to simply mirror `left` and `top`
+  // for these fields.
+  return {
+    top: rect.top,
+    y: rect.top,
+    bottom: rect.bottom,
+    left: rect.left,
+    x: rect.left,
+    right: rect.right,
+    width: rect.width,
+    height: rect.height
+  };
+}
+
+
+/**
+ * Inverts the intersection and bounding rect from the parent (frame) BCR to
+ * the local BCR space.
+ * @param {DOMRect|ClientRect} parentBoundingRect The parent's bound client rect.
+ * @param {DOMRect|ClientRect} parentIntersectionRect The parent's own intersection rect.
+ * @return {ClientRect} The local root bounding rect for the parent's children.
+ */
+function convertFromParentRect(parentBoundingRect, parentIntersectionRect) {
+  var top = parentIntersectionRect.top - parentBoundingRect.top;
+  var left = parentIntersectionRect.left - parentBoundingRect.left;
+  return {
+    top: top,
+    left: left,
+    height: parentIntersectionRect.height,
+    width: parentIntersectionRect.width,
+    bottom: top + parentIntersectionRect.height,
+    right: left + parentIntersectionRect.width
+  };
+}
+
+
+/**
+ * Checks to see if a parent element contains a child element (including inside
+ * shadow DOM).
+ * @param {Node} parent The parent element.
+ * @param {Node} child The child element.
+ * @return {boolean} True if the parent node contains the child node.
+ */
+function containsDeep(parent, child) {
+  var node = child;
+  while (node) {
+    if (node == parent) return true;
+
+    node = getParentNode(node);
+  }
+  return false;
+}
+
+
+/**
+ * Gets the parent node of an element or its host element if the parent node
+ * is a shadow root.
+ * @param {Node} node The node whose parent to get.
+ * @return {Node|null} The parent node or null if no parent exists.
+ */
+function getParentNode(node) {
+  var parent = node.parentNode;
+
+  if (node.nodeType == /* DOCUMENT */ 9 && node != document) {
+    // If this node is a document node, look for the embedding frame.
+    return getFrameElement(node);
+  }
+
+  if (parent && parent.nodeType == 11 && parent.host) {
+    // If the parent is a shadow root, return the host element.
+    return parent.host;
+  }
+
+  if (parent && parent.assignedSlot) {
+    // If the parent is distributed in a <slot>, return the parent of a slot.
+    return parent.assignedSlot.parentNode;
+  }
+
+  return parent;
+}
+
+
+// Exposes the constructors globally.
+window.IntersectionObserver = IntersectionObserver;
+window.IntersectionObserverEntry = IntersectionObserverEntry;
+
+}());
 
 
 /***/ })
