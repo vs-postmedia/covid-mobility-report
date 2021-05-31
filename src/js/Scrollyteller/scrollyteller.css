@@ -1,0 +1,37 @@
+
+/* STEP ENTRIES */
+.scrollyteller .wrapper {
+	color: white;
+	/*height: 500px;*/
+	margin: 15px auto 0 auto;
+	text-align: center;
+	top: 20px;
+	width: 100%;
+}
+.scrollyteller .sticky {
+	position: -webkit-sticky;
+	position: sticky;
+}
+.scrollyteller .step-list {
+	position: relative;
+}
+.scrollyteller .step-list.no-events {
+	pointer-events: none;
+}
+.scrollyteller .step {
+	margin: 100vh auto;
+	max-width: 350px;
+	text-align: center;
+}
+.scrollyteller .step:first-of-type {
+	margin-top: 10vh;
+}
+.scrollyteller .step:last-of-type {
+	margin-bottom: 0;
+	padding-bottom: 100vh;
+}
+
+.scrollyteller .step > p {
+	background: rgba(255,255,255,0.9);
+	padding: 5px;
+}

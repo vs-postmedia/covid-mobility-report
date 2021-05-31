@@ -6,7 +6,6 @@ import css from './chart.css';
 
 // THE GOOD STUFF
 let svg, height, width, xScale, yScale, yScaleBand, yScaleMetric;
-// const cache = {};
 const yTicks = 3;
 const opacity = 0.5;
 const margin = {
@@ -126,10 +125,6 @@ const drawData = (svg, metric, i, data, config) => {
 };
 
 const init = async (data, config, el) => {
-	// console.log(data)
-	// cache.el = el;
-	// cache.data = data;
-
 	// set height & width
 	height = d3.select(el).style('height').slice(0, -2) - margin.top - margin.bottom;
 	width = d3.select(el).style('width').slice(0, -2);

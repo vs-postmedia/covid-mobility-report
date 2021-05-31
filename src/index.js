@@ -1,8 +1,7 @@
 // LIBS
 import * as d3 from 'd3';
-import 'intersection-observer';
-import scrollama from 'scrollama';
 import * as Chart from './js/Chart/chart.js';
+import * as Scrollyteller from './js/Scrollyteller/scrollyteller.js';
 
 // CSS
 import normalize from './css/normalize.css';
@@ -56,22 +55,6 @@ const buildCharts = (data) => {
 		});
 };
 
-const fadeIn = (selectorString) => {
-	const elements = document.querySelectorAll(selectorString);
-	elements.forEach(el => {
-		el.style.opacity = 1;
-		el.className += ' focus';
-	});
-};
-
-const fadeOut = (selectorString) => {
-	const elements = document.querySelectorAll(selectorString);
-	elements.forEach(el => {
-		el.style.opacity = 0.5;
-		el.classList.remove('focus');
-	});
-};
-
 const groupBy = (array, key) => {
 	return array.reduce(function(result, x) {
 		(result[x[key]] = result[x[key]] || []).push(x);
@@ -80,50 +63,6 @@ const groupBy = (array, key) => {
 	}, {});
 };
 
-const setupScroller = (scroller) => {
-	// setup the scroller instance, pass callback functions
-	scroller
-		.setup({
-			offset: 1,
-			step: '.step',
-		})
-		.onStepEnter(resp => {
-			// { element, index, direction }
-			const index = resp.index;
-			const dir = resp.direction;
-
-			if (index >= 0 && dir === 'down' || index > 0 && dir === 'up') {
-				// fade  out
-				fadeOut('.scrollyteller .chart');
-
-				// refocus selected item
-				fadeIn(`.scrollyteller .f${index + 1}`);
-			} else if (index === 0 && dir === 'up') {
-				// fade in
-				fadeIn('.scrollyteller .chart');
-			}
-
-			// console.log(index, dir)
-		})
-		.onStepExit(resp => {
-			// { element, index, direction }
-			if (resp.index === 2 && resp.direction === 'down') {
-				// fade in
-				fadeIn('.scrollyteller .chart');
-
-				// disable pointer-events
-				const overlay = document.querySelectorAll('#charts .overlay');
-				overlay.forEach(el => {
-					el.className += ' no-events'
-				})
-			}
-
-			// console.log(resp.index, resp.direction)
-		});
-
-	// setup resize event
-	window.addEventListener('resize', scroller.resize);
-};
 
 const transformData = (data) => {
 	// group by region
@@ -144,11 +83,6 @@ const transformData = (data) => {
 
 // Let's kick this off!
 const init = async () => {
-	// scrollama!
-	const scroller = scrollama();
-	// wrapper el
-	container = d3.select('charts');
-
 	// grab our data
 	const resp = await d3.csv(dataUrl, d => {
 		return {
@@ -165,7 +99,8 @@ const init = async () => {
 	const data = transformData(resp);
 	buildCharts(data, '.chart');
 	
-	setupScroller(scroller);
+	// scrollama!
+	scrollyteller.init('.scrollyteller .chart')
 };
 
 
