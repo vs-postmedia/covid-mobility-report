@@ -80,9 +80,9 @@
 	max-width: 350px;
 	text-align: center;
 }
-/*.scrollyteller .step:first-of-type {
-	margin-top: 20%;
-}*/
+.scrollyteller .step:first-of-type {
+	margin-top: 10vh;
+}
 .scrollyteller .step:last-of-type {
 	margin-bottom: 0;
 	padding-bottom: 100vh;
