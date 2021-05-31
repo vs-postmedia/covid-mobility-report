@@ -100,7 +100,7 @@ const init = async () => {
 	buildCharts(data, '.chart');
 	
 	// scrollama!
-	scrollyteller.init('.scrollyteller .chart')
+	Scrollyteller.init('.scrollyteller .chart')
 };
 
 
