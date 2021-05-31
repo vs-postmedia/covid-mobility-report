@@ -6,6 +6,7 @@ import css from './chart.css';
 
 // THE GOOD STUFF
 let svg, height, width, xScale, yScale, yScaleBand, yScaleMetric;
+const cache = {};
 const yTicks = 3;
 const opacity = 0.5;
 const margin = {
@@ -14,6 +15,7 @@ const margin = {
 	bottom: 25,
 	left: 30
 };
+
 
 
 
@@ -125,6 +127,8 @@ const drawData = (svg, metric, i, data, config) => {
 
 const init = async (data, config, el) => {
 	// console.log(data)
+	cache.el = el;
+	cache.data = data;
 
 	// set height & width
 	height = d3.select(el).style('height').slice(0, -2) - margin.top - margin.bottom;
@@ -208,55 +212,5 @@ const ySetup = (data) => {
 		.range([height - margin.bottom, margin.top])
 };
 
-const updateChart = (data, config) => {
-	
-	// set height & width
-	height = d3.select(id).style('height').slice(0, -2) / 1.6 - margin.top - margin.bottom;
-	width = d3.select(id).style('width').slice(0, -2);
-	
-	// svg
-	const svg = d3.select(id)
-		.append('svg')
-		.attr('viewBox', [0, 0, width, height])
-		
-	d3.select('svg')
-		.on('mousemove touchmove', handleMouseMove)
-		.on('mouseout touchend', handleMouseOut);
 
-	// Add axes
-	x = xSetup(data);
-	y = ySetup(data);
-
-	svg.append('g')
-		.call(xAxis)
-
-	svg.append('g')
-		.call(yAxis)
-
-	svg.append('g')
-		.call(yAxisGridlines)
-
-	// draw data area 
-	config.chart_variables.forEach((metric,i) => {
-		drawData(svg, metric, i, data, config);
-	});
-
-	// add tooltip
-	// d3.select('#app')
-	// 	.append('div')
-	// 		.attr('class', 'tooltip-container')
-	// 		.style('display', 'none')
-	// 		.style('font', '1rem BentonSans');
-};
-
-
-window.addEventListener('resize', () => {
-	const el = document.getElementById(el.replace('#', ''));
-
-	if (el !== null) {
-		el.innerHTML = '';
-		updateChart(dataCache, configCache);
-	}
-});
-
-export { init, updateChart };
+export { init };

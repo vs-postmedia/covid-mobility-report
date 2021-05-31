@@ -13,7 +13,13 @@
 	color: #FFF;
 	padding: 1px 2px;
 }
-.green-01 {
+.grey-01 {
+	background-color: var(--grey03);
+	border-radius: 2px;
+	color: #FFF;
+	padding: 1px 2px;
+}
+.red-01 {
 	background-color: darkred;
 	border-radius: 2px;
 	color: #FFF;
@@ -23,37 +29,45 @@
 
 /* APP & CHART WRAPPER */
 #app {
-	margin: 0 auto;
+	margin: 0 0.5rem;
 	max-width: 750px;
 }
-.wrapper {
-	/*display: flex;*/
-	margin: 15px auto 0 auto;
+
+#app header {
+	margin-bottom: 2rem;
+}
+
+#app header .scroll {
+	color: var(--grey02);
+	margin-top: 7px;
+	text-align: center;
+}
+
+
+/* CHARTS */
+.wrapper .chart {
+	transition: opacity 0.4s ease-in;
+}
+.wrapper .chart.focus {
+	opacity: 1;
 }
 .wrapper .chart:nth-of-type(1) {
 	margin-right: 0.5rem;
 }
 
 
-/* CARDS */
-.wrapper img {
-	transition: opacity 0.4s ease-in;
-}
-.wrapper img.focus {
-	/*transform: translate(-50%, 100%);*/
-	opacity: 1;
-}
-
-
 /* STEP ENTRIES */
-.scrollyteller .sticky {
+.scrollyteller .wrapper {
 	color: white;
-	height: 500px;
+	/*height: 500px;*/
+	margin: 15px auto 0 auto;
 	text-align: center;
+	top: 20px;
 	width: 100%;
+}
+.scrollyteller .sticky {
 	position: -webkit-sticky;
 	position: sticky;
-	top: 20px;
 }
 .scrollyteller .step-list {
 	position: relative;
@@ -63,20 +77,22 @@
 }
 .scrollyteller .step {
 	margin: 100vh auto;
-	max-width: 400px;
+	max-width: 350px;
 	text-align: center;
 }
-.scrollyteller .step:first-of-type {
+/*.scrollyteller .step:first-of-type {
 	margin-top: 20%;
-}
+}*/
 .scrollyteller .step:last-of-type {
 	margin-bottom: 0;
-	padding-bottom: 200%;
+	padding-bottom: 100vh;
 }
 
 .scrollyteller .step > p {
-	background: rgba(255,255,255,0.8);
+	background: rgba(255,255,255,0.9);
+	padding: 5px;
 }
+
 
 
 
@@ -85,8 +101,7 @@
 
 @media only screen and (min-width: 600px) {
     /* Style adjustments for viewports that meet the condition */
-    .wrapper {
-    	/*display: flex;*/
-    	/*justify-content: space-between;*/
+    #app {
+    	margin: 0 auto;
     }
 }

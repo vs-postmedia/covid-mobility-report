@@ -28,7 +28,7 @@
 }
 
 #app footer {
-	display: flex;
+	margin-top: 1rem;
 }
 
 #app footer > p {

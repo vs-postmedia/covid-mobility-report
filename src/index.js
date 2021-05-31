@@ -17,7 +17,7 @@ const dataUrl = 'https://gist.githubusercontent.com/njgriffiths/c0a987372baea607
 
 const config = {
 	chart_variables: ['work','transit','driving'],
-	fill_colours: ['#A7A9AB','#0062A3','darkred'],
+	fill_colours: ['#A7A9AB','steelblue','darkred'],
 	y_scale_metric: 'driving'
 };
 
@@ -52,7 +52,7 @@ const buildCharts = (data) => {
 			width = container.offsetWidth;
 
 			// init chart
-			Chart.init(d.data, config,container);
+			Chart.init(d.data, config, container);
 		});
 };
 
@@ -62,9 +62,6 @@ const fadeIn = (selectorString) => {
 		el.style.opacity = 1;
 		el.className += ' focus';
 	});
-
-	console.log(selectorString)
-	console.log(elements)
 };
 
 const fadeOut = (selectorString) => {
@@ -87,7 +84,7 @@ const setupScroller = (scroller) => {
 	// setup the scroller instance, pass callback functions
 	scroller
 		.setup({
-			offset: 0.75,
+			offset: 1,
 			step: '.step',
 		})
 		.onStepEnter(resp => {
@@ -95,7 +92,7 @@ const setupScroller = (scroller) => {
 			const index = resp.index;
 			const dir = resp.direction;
 
-			if (index >= 0 && dir === 'down') {
+			if (index >= 0 && dir === 'down' || index > 0 && dir === 'up') {
 				// fade  out
 				fadeOut('.scrollyteller .chart');
 
@@ -106,11 +103,11 @@ const setupScroller = (scroller) => {
 				fadeIn('.scrollyteller .chart');
 			}
 
-			console.log(index, dir)
+			// console.log(index, dir)
 		})
 		.onStepExit(resp => {
 			// { element, index, direction }
-			if (resp.index === 3 && resp.direction === 'down') {
+			if (resp.index === 2 && resp.direction === 'down') {
 				// fade in
 				fadeIn('.scrollyteller .chart');
 
@@ -120,6 +117,8 @@ const setupScroller = (scroller) => {
 					el.className += ' no-events'
 				})
 			}
+
+			// console.log(resp.index, resp.direction)
 		});
 
 	// setup resize event
@@ -133,6 +132,7 @@ const transformData = (data) => {
 	return Object.keys(grouped).map(d => {
 		let className = grouped[d][grouped[d].length - 1].driving > 0 ? 'f1' : 'f2';
 		className = d === 'Seoul' ? 'f3' : className;
+		
 		return {
 			key: d,
 			class_name: className,
@@ -147,7 +147,7 @@ const init = async () => {
 	// scrollama!
 	const scroller = scrollama();
 	// wrapper el
-	container = document.getElementById('charts');
+	container = d3.select('charts');
 
 	// grab our data
 	const resp = await d3.csv(dataUrl, d => {
